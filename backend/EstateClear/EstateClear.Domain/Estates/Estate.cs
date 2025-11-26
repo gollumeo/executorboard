@@ -27,7 +27,7 @@ public class Estate
             throw new DomainException("Executor is required");
         }
 
-        if (executorId.Value == Guid.Empty)
+        if (executorId.Value() == Guid.Empty)
         {
             throw new DomainException("Executor is required");
         }

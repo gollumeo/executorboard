@@ -20,9 +20,9 @@ public class CreateEstateFlowTests
 
         Assert.NotNull(result);
         Assert.NotNull(result.EstateId);
-        Assert.NotEqual(Guid.Empty, result.EstateId.Value);
+        Assert.NotEqual(Guid.Empty, result.EstateId.Value());
         Assert.Single(estates.AddedEstates);
-        Assert.Equal(executorId, estates.AddedEstates.Single().ExecutorId.Value);
+        Assert.Equal(executorId, estates.AddedEstates.Single().ExecutorId.Value());
         Assert.Equal("Estate Alpha", estates.AddedEstates.Single().DisplayName);
     }
 

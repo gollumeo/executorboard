@@ -1,13 +1,17 @@
+using System.Linq;
+
 namespace EstateClear.Domain.Estates;
 
 public sealed class EstateName
 {
     private EstateName(string value)
     {
-        Value = value;
+        _value = value;
     }
 
-    public string Value { get; }
+    private string _value { get; }
+
+    public string Value() => _value;
 
     public static EstateName From(string displayName)
     {
