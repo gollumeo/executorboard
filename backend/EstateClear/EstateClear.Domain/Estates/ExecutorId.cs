@@ -1,13 +1,8 @@
 namespace EstateClear.Domain.Estates;
 
-public sealed class ExecutorId
+public sealed class ExecutorId(Guid value)
 {
-    private ExecutorId(Guid value)
-    {
-        Value = value;
-    }
-
-    public Guid Value { get; }
+    public Guid Value { get; } = value;
 
     public static ExecutorId From(Guid value) => new(value);
 }

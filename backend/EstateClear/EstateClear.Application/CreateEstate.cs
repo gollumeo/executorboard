@@ -1,14 +1,8 @@
 namespace EstateClear.Application;
 
-public sealed class CreateEstate
+public sealed class CreateEstate(Guid executorId, string displayName)
 {
-    public CreateEstate(Guid executorId, string displayName)
-    {
-        ExecutorId = executorId;
-        DisplayName = displayName;
-    }
+    public Guid ExecutorId { get; } = executorId;
 
-    public Guid ExecutorId { get; }
-
-    public string DisplayName { get; }
+    public string DisplayName { get; } = displayName;
 }
