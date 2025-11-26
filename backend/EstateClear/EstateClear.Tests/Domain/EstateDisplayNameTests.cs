@@ -16,4 +16,28 @@ public class EstateDisplayNameTests
 
         Assert.ThrowsAny<Exception>(action);
     }
+
+    [Fact]
+    public void AnEstateDisplayNameShouldBeTrimmed()
+    {
+        var estateId = EstateId.From(Guid.NewGuid());
+        var executorId = ExecutorId.From(Guid.NewGuid());
+        var displayName = "  Estate Alpha  ";
+
+        var estate = Estate.Create(estateId, executorId, displayName);
+
+        Assert.Equal("Estate Alpha", estate.DisplayName);
+    }
+
+    [Fact]
+    public void AnEstateDisplayNameCannotBeTooShort()
+    {
+        var estateId = EstateId.From(Guid.NewGuid());
+        var executorId = ExecutorId.From(Guid.NewGuid());
+        var displayName = "A";
+
+        var action = () => Estate.Create(estateId, executorId, displayName);
+
+        Assert.ThrowsAny<Exception>(action);
+    }
 }

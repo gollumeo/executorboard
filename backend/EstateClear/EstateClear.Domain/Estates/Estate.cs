@@ -35,6 +35,13 @@ public class Estate
             throw new DomainException("Display name is required");
         }
 
-        return new Estate(id, executorId, displayName);
+        var trimmedDisplayName = displayName.Trim();
+
+        if (trimmedDisplayName.Length < 2)
+        {
+            throw new DomainException("Display name is too short");
+        }
+
+        return new Estate(id, executorId, trimmedDisplayName);
     }
 }
