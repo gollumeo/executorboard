@@ -81,4 +81,16 @@ public class EstateDisplayNameTests
 
         Assert.Equal(estate1.DisplayName, estate2.DisplayName);
     }
+
+    [Fact]
+    public void AnEstateNameShouldBeComparableIndependently()
+    {
+        var rawName1 = "estate alpha";
+        var rawName2 = "  Estate   Alpha  ";
+
+        var normalized1 = Estate.NormalizeName(rawName1);
+        var normalized2 = Estate.NormalizeName(rawName2);
+
+        Assert.Equal(normalized1, normalized2);
+    }
 }
