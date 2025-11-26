@@ -12,7 +12,7 @@ public class EstateDisplayNameTests
         var estateId = EstateId.From(Guid.NewGuid());
         var executorId = ExecutorId.From(Guid.NewGuid());
 
-        var action = () => Estate.Create(estateId, executorId, displayName);
+        var action = () => Estate.Create(estateId, executorId, EstateName.From(displayName));
 
         Assert.ThrowsAny<Exception>(action);
     }
@@ -24,7 +24,7 @@ public class EstateDisplayNameTests
         var executorId = ExecutorId.From(Guid.NewGuid());
         var displayName = "  Estate Alpha  ";
 
-        var estate = Estate.Create(estateId, executorId, displayName);
+        var estate = Estate.Create(estateId, executorId, EstateName.From(displayName));
 
         Assert.Equal("Estate Alpha", estate.DisplayName.Value());
     }
@@ -36,7 +36,7 @@ public class EstateDisplayNameTests
         var executorId = ExecutorId.From(Guid.NewGuid());
         var displayName = "A";
 
-        var action = () => Estate.Create(estateId, executorId, displayName);
+        var action = () => Estate.Create(estateId, executorId, EstateName.From(displayName));
 
         Assert.ThrowsAny<Exception>(action);
     }
@@ -48,7 +48,7 @@ public class EstateDisplayNameTests
         var executorId = ExecutorId.From(Guid.NewGuid());
         var displayName = "  eSTaTe   ALpha  ";
 
-        var estate = Estate.Create(estateId, executorId, displayName);
+        var estate = Estate.Create(estateId, executorId, EstateName.From(displayName));
 
         Assert.Equal("Estate Alpha", estate.DisplayName.Value());
     }
@@ -61,8 +61,8 @@ public class EstateDisplayNameTests
         var executorId = ExecutorId.From(Guid.NewGuid());
         var displayName = "  eSTaTe   ALpha  ";
 
-        var estate1 = Estate.Create(estateId1, executorId, displayName);
-        var estate2 = Estate.Create(estateId2, executorId, displayName);
+        var estate1 = Estate.Create(estateId1, executorId, EstateName.From(displayName));
+        var estate2 = Estate.Create(estateId2, executorId, EstateName.From(displayName));
 
         Assert.Equal(estate1.DisplayName.Value(), estate2.DisplayName.Value());
     }
@@ -76,8 +76,8 @@ public class EstateDisplayNameTests
         var rawName1 = "estate alpha";
         var rawName2 = "  Estate   Alpha  ";
 
-        var estate1 = Estate.Create(estateId1, executorId, rawName1);
-        var estate2 = Estate.Create(estateId2, executorId, rawName2);
+        var estate1 = Estate.Create(estateId1, executorId, EstateName.From(rawName1));
+        var estate2 = Estate.Create(estateId2, executorId, EstateName.From(rawName2));
 
         Assert.Equal(estate1.DisplayName.Value(), estate2.DisplayName.Value());
     }

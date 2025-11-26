@@ -20,7 +20,7 @@ public class Estate
 
     public EstateStatus Status { get; }
 
-    public static Estate Create(EstateId id, ExecutorId executorId, string displayName)
+    public static Estate Create(EstateId id, ExecutorId executorId, EstateName estateName)
     {
         if (executorId is null)
         {
@@ -31,8 +31,6 @@ public class Estate
         {
             throw new DomainException("Executor is required");
         }
-
-        var estateName = EstateName.From(displayName);
 
         return new Estate(id, executorId, estateName);
     }
