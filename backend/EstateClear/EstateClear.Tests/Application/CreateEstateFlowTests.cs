@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using EstateClear.Application;
 using Xunit;
 
 namespace EstateClear.Tests.Application;
@@ -21,7 +22,7 @@ public class CreateEstateFlowTests
         Assert.NotNull(result.EstateId);
         Assert.NotEqual(Guid.Empty, result.EstateId.Value);
         Assert.Single(estates.AddedEstates);
-        Assert.Equal(executorId, estates.AddedEstates.Single().ExecutorId);
+        Assert.Equal(executorId, estates.AddedEstates.Single().ExecutorId.Value);
         Assert.Equal(displayName, estates.AddedEstates.Single().DisplayName);
     }
 }
