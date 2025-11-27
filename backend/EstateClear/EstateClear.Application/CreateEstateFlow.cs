@@ -9,6 +9,13 @@ public sealed class CreateEstateFlow(IEstates estates)
         var estateId = EstateId.From(Guid.NewGuid());
         var executorId = ExecutorId.From(input.ExecutorId);
         var estateName = EstateName.From(input.DisplayName);
+        var exists = await estates.ExistsWithName(executorId, estateName.Value());
+
+        if (exists)
+        {
+            throw new Exception("Estate name already exists for executor");
+        }
+
         var estate = Estate.Create(estateId, executorId, estateName);
 
         await estates.Add(estate.Id, estate.ExecutorId, estate.DisplayName.Value());

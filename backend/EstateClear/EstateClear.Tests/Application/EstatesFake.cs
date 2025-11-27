@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using EstateClear.Application;
 using EstateClear.Domain.Estates;
 
@@ -13,5 +14,14 @@ public class EstatesFake : IEstates
     {
         AddedEstates.Add((estateId, executorId, displayName));
         return Task.CompletedTask;
+    }
+
+    public Task<bool> ExistsWithName(ExecutorId executorId, string displayName)
+    {
+        var exists = AddedEstates.Any(e =>
+            e.ExecutorId.Value() == executorId.Value() &&
+            e.DisplayName == displayName);
+
+        return Task.FromResult(exists);
     }
 }

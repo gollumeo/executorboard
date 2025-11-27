@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using EstateClear.Application;
+using EstateClear.Domain.Estates;
 using Xunit;
 
 namespace EstateClear.Tests.Application;
@@ -55,5 +56,22 @@ public class CreateEstateFlowTests
 
         await Assert.ThrowsAnyAsync<Exception>(action);
         Assert.Empty(estates.AddedEstates);
+    }
+
+    [Fact]
+    public async Task CreatingEstateWithSameNameForSameExecutorShouldBeRejected()
+    {
+        var executorId = Guid.NewGuid();
+        var existingEstateId = EstateId.From(Guid.NewGuid());
+        var normalizedName = "Estate Alpha";
+        var input = new CreateEstate(executorId, "  eSTaTe   Alpha  ");
+        var estates = new EstatesFake();
+        estates.AddedEstates.Add((existingEstateId, ExecutorId.From(executorId), normalizedName));
+        var flow = new CreateEstateFlow(estates);
+
+        var action = () => flow.Execute(input);
+
+        await Assert.ThrowsAnyAsync<Exception>(action);
+        Assert.Single(estates.AddedEstates);
     }
 }
