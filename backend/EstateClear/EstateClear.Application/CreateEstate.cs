@@ -1,5 +1,3 @@
-using System;
-
 namespace EstateClear.Application;
 
 public sealed class CreateEstate(Guid executorId, string displayName)
