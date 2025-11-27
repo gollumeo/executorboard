@@ -9,11 +9,10 @@ public class Estate
         Id = id;
         ExecutorId = executorId;
         _displayName = displayName;
-        _status = EstateStatus.Active;
+        Status = EstateStatus.Active;
     }
 
     private EstateName _displayName;
-    private EstateStatus _status;
 
     public EstateId Id { get; }
 
@@ -21,7 +20,7 @@ public class Estate
 
     public EstateName DisplayName() => _displayName;
 
-    public EstateStatus Status => _status;
+    public EstateStatus Status { get; private set; }
 
     public void RenameTo(EstateName newName)
     {
@@ -35,7 +34,7 @@ public class Estate
 
     public void Close()
     {
-        _status = EstateStatus.Closed;
+        Status = EstateStatus.Closed;
     }
 
     public static Estate Create(EstateId id, ExecutorId executorId, EstateName estateName)
