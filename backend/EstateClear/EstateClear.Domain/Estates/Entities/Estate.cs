@@ -24,6 +24,11 @@ public class Estate
 
     public EstateStatus Status => _status;
 
+    public void AddParticipant()
+    {
+        _participantsCount++;
+    }
+
     public void RenameTo(EstateName newName)
     {
         if (_status == EstateStatus.Closed)
