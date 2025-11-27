@@ -50,4 +50,24 @@ public class RenameEstateFlowTests
         Assert.Empty(estates.SavedEstates);
         Assert.Empty(estates.RenamedEstates);
     }
+
+    [Fact]
+    public async Task RenameEstateFlowShouldDoNothingWhenRenamingToSameName()
+    {
+        var estateId = EstateId.From(Guid.NewGuid());
+        var executorId = ExecutorId.From(Guid.NewGuid());
+        var aggregate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
+        var input = new RenameEstate(estateId, "Estate Alpha");
+        var estates = new EstatesFake
+        {
+            LoadedEstate = aggregate
+        };
+        var flow = new RenameEstateFlow(estates);
+
+        var result = await flow.Execute(input);
+
+        Assert.NotNull(result);
+        Assert.Empty(estates.SavedEstates);
+        Assert.Empty(estates.RenamedEstates);
+    }
 }

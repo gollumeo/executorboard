@@ -14,6 +14,11 @@ public sealed class RenameEstateFlow(IEstates estates)
 
         var newName = EstateName.From(input.NewName);
 
+        if (estate.DisplayName().Value() == newName.Value())
+        {
+            return new EstateRenamed(input.EstateId);
+        }
+
         estate.RenameTo(newName);
 
         await estates.Save(estate);
