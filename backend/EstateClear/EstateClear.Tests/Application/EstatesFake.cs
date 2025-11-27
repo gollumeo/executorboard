@@ -28,4 +28,10 @@ public class EstatesFake : IEstates
         RenamedEstates.Add((estateId, newName));
         return Task.CompletedTask;
     }
+
+    public Task<ExecutorId> Executor(EstateId estateId)
+    {
+        var match = AddedEstates.First(e => e.EstateId == estateId);
+        return Task.FromResult(match.ExecutorId);
+    }
 }
