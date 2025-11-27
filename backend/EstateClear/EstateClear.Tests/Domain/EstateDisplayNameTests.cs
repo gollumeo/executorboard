@@ -28,7 +28,7 @@ public class EstateDisplayNameTests
 
         var estate = Estate.Create(estateId, executorId, EstateName.From(displayName));
 
-        Assert.Equal("Estate Alpha", estate.DisplayName.Value());
+        Assert.Equal("Estate Alpha", estate.DisplayName().Value());
     }
 
     [Fact]
@@ -52,7 +52,7 @@ public class EstateDisplayNameTests
 
         var estate = Estate.Create(estateId, executorId, EstateName.From(displayName));
 
-        Assert.Equal("Estate Alpha", estate.DisplayName.Value());
+        Assert.Equal("Estate Alpha", estate.DisplayName().Value());
     }
 
     [Fact]
@@ -66,7 +66,7 @@ public class EstateDisplayNameTests
         var estate1 = Estate.Create(estateId1, executorId, EstateName.From(displayName));
         var estate2 = Estate.Create(estateId2, executorId, EstateName.From(displayName));
 
-        Assert.Equal(estate1.DisplayName.Value(), estate2.DisplayName.Value());
+        Assert.Equal(estate1.DisplayName().Value(), estate2.DisplayName().Value());
     }
 
     [Fact]
@@ -81,7 +81,7 @@ public class EstateDisplayNameTests
         var estate1 = Estate.Create(estateId1, executorId, EstateName.From(rawName1));
         var estate2 = Estate.Create(estateId2, executorId, EstateName.From(rawName2));
 
-        Assert.Equal(estate1.DisplayName.Value(), estate2.DisplayName.Value());
+        Assert.Equal(estate1.DisplayName().Value(), estate2.DisplayName().Value());
     }
 
     [Fact]

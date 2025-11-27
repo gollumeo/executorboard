@@ -20,7 +20,7 @@ public sealed class CreateEstateFlow(IEstates estates)
 
         var estate = Estate.Create(estateId, executorId, estateName);
 
-        await estates.Add(estate.Id, estate.ExecutorId, estate.DisplayName.Value());
+        await estates.Add(estate.Id, estate.ExecutorId, estate.DisplayName().Value());
 
         return new EstateCreated(estate.Id);
     }

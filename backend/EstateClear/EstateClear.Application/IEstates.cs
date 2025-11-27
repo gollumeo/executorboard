@@ -11,4 +11,6 @@ public interface IEstates
     Task Rename(EstateId estateId, EstateName newName);
 
     Task<ExecutorId> Executor(EstateId estateId);
+
+    Task<EstateName> NameOf(EstateId estateId);
 }

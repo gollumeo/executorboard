@@ -8,17 +8,29 @@ public class Estate
     {
         Id = id;
         ExecutorId = executorId;
-        DisplayName = displayName;
+        _displayName = displayName;
         Status = EstateStatus.Active;
     }
+
+    private EstateName _displayName;
 
     public EstateId Id { get; }
 
     public ExecutorId ExecutorId { get; }
 
-    public EstateName DisplayName { get; }
+    public EstateName DisplayName() => _displayName;
 
     public EstateStatus Status { get; }
+
+    public void RenameTo(EstateName newName)
+    {
+        if (Status == EstateStatus.Closed)
+        {
+            throw new DomainException("Estate is closed");
+        }
+
+        _displayName = newName;
+    }
 
     public static Estate Create(EstateId id, ExecutorId executorId, EstateName estateName)
     {

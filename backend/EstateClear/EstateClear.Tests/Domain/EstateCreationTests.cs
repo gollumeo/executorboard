@@ -19,7 +19,7 @@ public class EstateCreationTests
         Assert.NotNull(estate);
         Assert.Equal(estateId, estate.Id);
         Assert.Equal(executorId, estate.ExecutorId);
-        Assert.Equal(displayName.Value(), estate.DisplayName.Value());
+        Assert.Equal(displayName.Value(), estate.DisplayName().Value());
         Assert.Equal(EstateStatus.Active, estate.Status);
     }
 

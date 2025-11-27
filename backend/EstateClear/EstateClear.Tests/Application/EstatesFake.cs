@@ -34,4 +34,10 @@ public class EstatesFake : IEstates
         var match = AddedEstates.First(e => e.EstateId == estateId);
         return Task.FromResult(match.ExecutorId);
     }
+
+    public Task<EstateName> NameOf(EstateId estateId)
+    {
+        var match = AddedEstates.First(e => e.EstateId == estateId);
+        return Task.FromResult(EstateName.From(match.DisplayName));
+    }
 }
