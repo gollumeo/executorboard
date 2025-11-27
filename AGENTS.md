@@ -451,4 +451,11 @@ When Pierre writes tests in Vitest / Testing Library:
 
 ---
 
+# 10. EstateClear Working Notes (do not override rules above)
+- Backend is generated via `dotboot`; never scaffold the solution manually. Projects: EstateClear.Api/Application/Domain/Infrastructure/Persistence/Presentation/Tests with matching namespaces.
+- Use-case–driven TDD: Application tests drive Domain emergence. CQRS names without technical suffixes; flows like `CreateEstateFlow`; ports named as collections (e.g., `IEstates`).
+- Estate is the aggregate root. Invariants to date: executor required and non-empty Guid; display name required, trimmed, min length 2, normalized (title-case words, single spaces); initial status Active.
+- Value Objects `EstateId`, `ExecutorId`, `EstateName` are immutable; internal value is private and exposed via `Value()` (no public `.Value`). `EstateName.From(string)` performs validation/normalization. `Estate.Create` accepts an `EstateName` (not a raw string).
+- Application message `CreateEstate` carries `executorId` (Guid) and `displayName` (string); the flow builds the VO before calling Domain and passes the normalized string to `IEstates.Add`.
+
 **End of AGENTS.md**
