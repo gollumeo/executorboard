@@ -1,4 +1,4 @@
-namespace EstateClear.Domain.Estates;
+namespace EstateClear.Domain.Estates.ValueObjects;
 
 public enum EstateStatus
 {

@@ -1,5 +1,7 @@
 using EstateClear.Domain;
 using EstateClear.Domain.Estates;
+using EstateClear.Domain.Estates.Entities;
+using EstateClear.Domain.Estates.ValueObjects;
 
 namespace EstateClear.Tests.Domain;
 

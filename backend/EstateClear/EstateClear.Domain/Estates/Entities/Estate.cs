@@ -1,6 +1,6 @@
-namespace EstateClear.Domain.Estates;
+using EstateClear.Domain.Estates.ValueObjects;
 
-using System.Linq;
+namespace EstateClear.Domain.Estates.Entities;
 
 public class Estate
 {

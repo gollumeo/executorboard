@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using EstateClear.Application;
 using EstateClear.Domain.Estates;
+using EstateClear.Domain.Estates.ValueObjects;
 
 namespace EstateClear.Tests.Application;
 
