@@ -25,4 +25,26 @@ public class EstateParticipantTests
         Assert.Equal(EstateStatus.Active, estate.Status);
         Assert.Equal("Estate Alpha", estate.DisplayName().Value());
     }
+
+    [Fact]
+    public void RemoveParticipantShouldDecreaseParticipantsCount()
+    {
+        var estateId = EstateId.From(Guid.NewGuid());
+        var executorId = ExecutorId.From(Guid.NewGuid());
+        var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
+
+        estate
+            .GetType()
+            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
+            ?.SetValue(estate, 2);
+
+        estate.RemoveParticipant();
+
+        var count = (int)(estate
+            .GetType()
+            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
+            ?.GetValue(estate) ?? 0);
+
+        Assert.Equal(1, count);
+    }
 }
