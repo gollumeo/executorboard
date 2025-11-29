@@ -31,6 +31,11 @@ public class Estate
 
     public void RemoveParticipant()
     {
+        if (_status == EstateStatus.Closed)
+        {
+            throw new DomainException("Estate is closed");
+        }
+
         if (_participantsCount == 0)
         {
             return;
