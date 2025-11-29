@@ -53,12 +53,9 @@ public class Estate
             throw new DomainException("Executor is required");
         }
 
-        foreach (var existing in _participants)
+        if (_participants.Any(existing => existing.Equals(participant)))
         {
-            if (existing.Equals(participant))
-            {
-                throw new DomainException("Participant already exists");
-            }
+            throw new DomainException("Participant already exists");
         }
 
         _participants.Add(participant);
