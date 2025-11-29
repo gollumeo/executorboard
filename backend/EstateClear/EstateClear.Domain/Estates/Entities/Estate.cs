@@ -15,6 +15,7 @@ public class Estate
     private EstateName _displayName;
     private EstateStatus _status;
     private int _participantsCount;
+    private readonly List<Participant> _participants = new();
 
     public EstateId Id { get; }
 
@@ -27,6 +28,19 @@ public class Estate
     public void AddParticipant()
     {
         _participantsCount++;
+    }
+
+    public void AddParticipant(Participant participant)
+    {
+        foreach (var existing in _participants)
+        {
+            if (existing.Equals(participant))
+            {
+                throw new DomainException("Participant already exists");
+            }
+        }
+
+        _participants.Add(participant);
     }
 
     public void RemoveParticipant()
