@@ -42,10 +42,9 @@ public class EstateRenameRulesTests
         var executorId = ExecutorId.From(Guid.NewGuid());
         var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
 
-        estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.SetValue(estate, 1);
+        var participant = Participant.From("john.doe@example.com", "John", "Doe");
+        var executor = Executor.From(executorId.Value());
+        estate.GrantParticipantAccess(participant, executor);
 
         var action = () => estate.RenameTo(EstateName.From("Estate Beta"));
 

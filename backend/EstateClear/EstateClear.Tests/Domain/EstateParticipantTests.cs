@@ -9,251 +9,40 @@ namespace EstateClear.Tests.Domain;
 public class EstateParticipantTests
 {
     [Fact]
-    public void AddParticipantShouldIncreaseParticipantsCount()
-    {
-        var estateId = EstateId.From(Guid.NewGuid());
-        var executorId = ExecutorId.From(Guid.NewGuid());
-        var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
-
-        estate.AddParticipant();
-
-        var count = (int)(estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.GetValue(estate) ?? 0);
-
-        Assert.Equal(1, count);
-        Assert.Equal(EstateStatus.Active, estate.Status);
-        Assert.Equal("Estate Alpha", estate.DisplayName().Value());
-    }
-
-    [Fact]
-    public void RemoveParticipantShouldDecreaseParticipantsCount()
-    {
-        var estateId = EstateId.From(Guid.NewGuid());
-        var executorId = ExecutorId.From(Guid.NewGuid());
-        var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
-
-        estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.SetValue(estate, 2);
-
-        estate.RemoveParticipant();
-
-        var count = (int)(estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.GetValue(estate) ?? 0);
-
-        Assert.Equal(1, count);
-    }
-
-    [Fact]
-    public void RemoveParticipantShouldNotGoBelowZero()
-    {
-        var estateId = EstateId.From(Guid.NewGuid());
-        var executorId = ExecutorId.From(Guid.NewGuid());
-        var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
-
-        estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.SetValue(estate, 0);
-
-        estate.RemoveParticipant();
-
-        var count = (int)(estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.GetValue(estate) ?? 0);
-
-        Assert.Equal(0, count);
-        Assert.Equal(EstateStatus.Active, estate.Status);
-        Assert.Equal("Estate Alpha", estate.DisplayName().Value());
-    }
-
-    [Fact]
-    public void RemovingParticipantOnClosedEstateShouldThrow()
-    {
-        var estateId = EstateId.From(Guid.NewGuid());
-        var executorId = ExecutorId.From(Guid.NewGuid());
-        var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
-
-        estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.SetValue(estate, 1);
-
-        estate
-            .GetType()
-            .GetField("_status", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.SetValue(estate, EstateStatus.Closed);
-
-        Assert.Throws<DomainException>(() => estate.RemoveParticipant());
-
-        var count = (int)(estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.GetValue(estate) ?? 0);
-
-        Assert.Equal(1, count);
-        Assert.Equal(EstateStatus.Closed, estate.Status);
-        Assert.Equal("Estate Alpha", estate.DisplayName().Value());
-    }
-
-    [Fact]
-    public void CloseShouldResetParticipantsCountToZero()
-    {
-        var estateId = EstateId.From(Guid.NewGuid());
-        var executorId = ExecutorId.From(Guid.NewGuid());
-        var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
-
-        estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.SetValue(estate, 3);
-
-        estate.Close();
-
-        var count = (int)(estate
-            .GetType()
-            .GetField("_participantsCount", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?.GetValue(estate) ?? 0);
-
-        Assert.Equal(0, count);
-        Assert.Equal(EstateStatus.Closed, estate.Status);
-        Assert.Equal("Estate Alpha", estate.DisplayName().Value());
-    }
-
-    [Fact]
-    public void AddingParticipantUsesValueObjectAndEnforcesUniqueness()
-    {
-        var estateId = EstateId.From(Guid.NewGuid());
-        var executorId = ExecutorId.From(Guid.NewGuid());
-        var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
-
-        var participantType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Participant");
-        Assert.NotNull(participantType);
-
-        var fromMethod = participantType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(fromMethod);
-
-        var participant = fromMethod!.Invoke(null, new object?[] { "john.doe@example.com", "John", "Doe" });
-        Assert.NotNull(participant);
-
-        var addParticipantMethod = estate
-            .GetType()
-            .GetMethod("AddParticipant", BindingFlags.Instance | BindingFlags.Public, null, new[] { participantType }, null);
-
-        Assert.NotNull(addParticipantMethod);
-
-        addParticipantMethod!.Invoke(estate, new[] { participant });
-
-        var participantsField = estate
-            .GetType()
-            .GetField("_participants", BindingFlags.Instance | BindingFlags.NonPublic);
-
-        Assert.NotNull(participantsField);
-
-        var participants = participantsField!.GetValue(estate) as IEnumerable;
-        Assert.NotNull(participants);
-
-        var enumerator = participants!.GetEnumerator();
-        Assert.True(enumerator.MoveNext());
-        Assert.Equal(participant, enumerator.Current);
-
-        var duplicate = fromMethod!.Invoke(null, ["john.doe@example.com", "Johnny", "Doe"]);
-        Assert.NotNull(duplicate);
-
-        var equalsMethod = participant!.GetType().GetMethod("Equals", BindingFlags.Instance | BindingFlags.Public, null, new[] { participantType }, null);
-        Assert.NotNull(equalsMethod);
-
-        var areEqual = (bool)(equalsMethod!.Invoke(participant, new[] { duplicate }) ?? false);
-        Assert.True(areEqual);
-
-        Assert.Throws<DomainException>(() =>
-        {
-            try
-            {
-                addParticipantMethod!.Invoke(estate, new[] { duplicate });
-            }
-            catch (TargetInvocationException ex)
-            {
-                throw ex.InnerException ?? ex;
-            }
-        });
-    }
-
-    [Fact]
     public void GrantParticipantAccessShouldEnforceExecutorAuthority()
     {
         var estateId = EstateId.From(Guid.NewGuid());
         var executorId = ExecutorId.From(Guid.NewGuid());
         var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
 
-        var participantType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Participant");
-        Assert.NotNull(participantType);
+        var participant = Participant.From("jane.doe@example.com", "Jane", "Doe");
+        var otherExecutor = Executor.From(Guid.NewGuid());
 
-        var fromMethod = participantType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(fromMethod);
+        Assert.Throws<DomainException>(() => estate.GrantParticipantAccess(participant, otherExecutor));
 
-        var participant = fromMethod!.Invoke(null, new object?[] { "jane.doe@example.com", "Jane", "Doe" });
-        Assert.NotNull(participant);
+        var authorizedExecutor = Executor.From(executorId.Value());
+        estate.GrantParticipantAccess(participant, authorizedExecutor);
 
-        var executorType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Executor");
-        Assert.NotNull(executorType);
+        var participants = estate.Participants();
+        Assert.Single(participants);
+        Assert.Equal(participant, participants[0]);
+    }
 
-        var executorFrom = executorType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(executorFrom);
+    [Fact]
+    public void GrantParticipantAccessShouldEnforceUniqueness()
+    {
+        var estateId = EstateId.From(Guid.NewGuid());
+        var executorId = ExecutorId.From(Guid.NewGuid());
+        var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
+        var executor = Executor.From(executorId.Value());
 
-        var otherExecutor = executorFrom!.Invoke(null, new object?[] { Guid.NewGuid() });
-        Assert.NotNull(otherExecutor);
+        var participant = Participant.From("john.doe@example.com", "John", "Doe");
+        estate.GrantParticipantAccess(participant, executor);
 
-        var grantMethod = estate
-            .GetType()
-            .GetMethod("GrantParticipantAccess", BindingFlags.Instance | BindingFlags.Public, null, new[] { participantType, executorType }, null);
+        var duplicate = Participant.From("john.doe@example.com", "Johnny", "Doe");
 
-        Assert.NotNull(grantMethod);
-
-        Assert.Throws<DomainException>(() =>
-        {
-            try
-            {
-                grantMethod!.Invoke(estate, new[] { participant, otherExecutor });
-            }
-            catch (TargetInvocationException ex)
-            {
-                throw ex.InnerException ?? ex;
-            }
-        });
-
-        var authorizedExecutor = executorFrom!.Invoke(null, new object?[] { executorId.Value() });
-        Assert.NotNull(authorizedExecutor);
-
-        grantMethod!.Invoke(estate, new[] { participant, authorizedExecutor });
-
-        var participantsField = estate
-            .GetType()
-            .GetField("_participants", BindingFlags.Instance | BindingFlags.NonPublic);
-
-        Assert.NotNull(participantsField);
-
-        var participants = participantsField!.GetValue(estate) as IEnumerable;
-        Assert.NotNull(participants);
-
-        var enumerator = participants!.GetEnumerator();
-        Assert.True(enumerator.MoveNext());
-        Assert.Equal(participant, enumerator.Current);
+        Assert.Throws<DomainException>(() => estate.GrantParticipantAccess(duplicate, executor));
+        Assert.Single(estate.Participants());
     }
 
     [Fact]
@@ -263,70 +52,17 @@ public class EstateParticipantTests
         var executorId = ExecutorId.From(Guid.NewGuid());
         var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
 
-        var participantType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Participant");
-        Assert.NotNull(participantType);
+        var participant = Participant.From("jane.doe@example.com", "Jane", "Doe");
+        var executor = Executor.From(executorId.Value());
+        estate.GrantParticipantAccess(participant, executor);
 
-        var fromMethod = participantType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(fromMethod);
+        var otherExecutor = Executor.From(Guid.NewGuid());
 
-        var participant = fromMethod!.Invoke(null, new object?[] { "jane.doe@example.com", "Jane", "Doe" });
-        Assert.NotNull(participant);
+        Assert.Throws<DomainException>(() => estate.RevokeParticipantAccess(participant, otherExecutor));
+        Assert.Single(estate.Participants());
 
-        var participantsField = estate
-            .GetType()
-            .GetField("_participants", BindingFlags.Instance | BindingFlags.NonPublic);
-
-        Assert.NotNull(participantsField);
-
-        var participants = participantsField!.GetValue(estate) as IList;
-        Assert.NotNull(participants);
-
-        participants!.Add(participant);
-
-        var executorType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Executor");
-        Assert.NotNull(executorType);
-
-        var executorFrom = executorType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(executorFrom);
-
-        var otherExecutor = executorFrom!.Invoke(null, new object?[] { Guid.NewGuid() });
-        Assert.NotNull(otherExecutor);
-
-        var revokeMethod = estate
-            .GetType()
-            .GetMethod("RevokeParticipantAccess", BindingFlags.Instance | BindingFlags.Public, null, new[] { participantType, executorType }, null);
-
-        Assert.NotNull(revokeMethod);
-
-        Assert.Throws<DomainException>(() =>
-        {
-            try
-            {
-                revokeMethod!.Invoke(estate, new[] { participant, otherExecutor });
-            }
-            catch (TargetInvocationException ex)
-            {
-                throw ex.InnerException ?? ex;
-            }
-        });
-
-        var enumerator = participants.GetEnumerator();
-        Assert.True(enumerator.MoveNext());
-        Assert.Equal(participant, enumerator.Current);
-
-        var authorizedExecutor = executorFrom!.Invoke(null, new object?[] { executorId.Value() });
-        Assert.NotNull(authorizedExecutor);
-
-        revokeMethod!.Invoke(estate, new[] { participant, authorizedExecutor });
-
-        enumerator = participants.GetEnumerator();
-        Assert.False(enumerator.MoveNext());
+        estate.RevokeParticipantAccess(participant, executor);
+        Assert.Empty(estate.Participants());
     }
 
     [Fact]
@@ -336,43 +72,11 @@ public class EstateParticipantTests
         var executorId = ExecutorId.From(Guid.NewGuid());
         var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
 
-        var participantType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Participant");
-        Assert.NotNull(participantType);
+        var participant = Participant.From("jane.doe@example.com", "Jane", "Doe");
+        var executor = Executor.From(executorId.Value());
+        estate.GrantParticipantAccess(participant, executor);
 
-        var participantFrom = participantType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(participantFrom);
-
-        var participant = participantFrom!.Invoke(null, new object?[] { "jane.doe@example.com", "Jane", "Doe" });
-        Assert.NotNull(participant);
-
-        var executorType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Executor");
-        Assert.NotNull(executorType);
-
-        var executorFrom = executorType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(executorFrom);
-
-        var executor = executorFrom!.Invoke(null, new object?[] { executorId.Value() });
-        Assert.NotNull(executor);
-
-        var participantsField = estate
-            .GetType()
-            .GetField("_participants", BindingFlags.Instance | BindingFlags.NonPublic);
-
-        Assert.NotNull(participantsField);
-
-        var participants = participantsField!.GetValue(estate) as IList;
-        Assert.NotNull(participants);
-
-        participants!.Add(participant);
-
-        var contributionsField = estate
-            .GetType()
+        var contributionsField = typeof(Estate)
             .GetField("_contributions", BindingFlags.Instance | BindingFlags.NonPublic);
         Assert.NotNull(contributionsField);
 
@@ -381,27 +85,9 @@ public class EstateParticipantTests
 
         contributions!.Add("dummy");
 
-        var revokeMethod = estate
-            .GetType()
-            .GetMethod("RevokeParticipantAccess", BindingFlags.Instance | BindingFlags.Public, null, new[] { participantType, executorType }, null);
+        Assert.Throws<DomainException>(() => estate.RevokeParticipantAccess(participant, executor));
 
-        Assert.NotNull(revokeMethod);
-
-        Assert.Throws<DomainException>(() =>
-        {
-            try
-            {
-                revokeMethod!.Invoke(estate, new[] { participant, executor });
-            }
-            catch (TargetInvocationException ex)
-            {
-                throw ex.InnerException ?? ex;
-            }
-        });
-
-        var enumerator = participants.GetEnumerator();
-        Assert.True(enumerator.MoveNext());
-        Assert.Equal(participant, enumerator.Current);
+        Assert.Single(estate.Participants());
     }
 
     [Fact]
@@ -411,40 +97,12 @@ public class EstateParticipantTests
         var executorId = ExecutorId.From(Guid.NewGuid());
         var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
 
-        var updateType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Update");
-        Assert.NotNull(updateType);
+        var update = Update.From("First update");
+        var executor = Executor.From(executorId.Value());
 
-        var updateFrom = updateType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(updateFrom);
+        estate.PostUpdate(update, executor);
 
-        var update = updateFrom!.Invoke(null, new object?[] { "First update" });
-        Assert.NotNull(update);
-
-        var executorType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Executor");
-        Assert.NotNull(executorType);
-
-        var executorFrom = executorType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(executorFrom);
-
-        var executor = executorFrom!.Invoke(null, new object?[] { executorId.Value() });
-        Assert.NotNull(executor);
-
-        var postUpdateMethod = estate
-            .GetType()
-            .GetMethod("PostUpdate", BindingFlags.Instance | BindingFlags.Public, null, new[] { updateType, executorType }, null);
-
-        Assert.NotNull(postUpdateMethod);
-
-        postUpdateMethod!.Invoke(estate, new[] { update, executor });
-
-        var updatesField = estate
-            .GetType()
+        var updatesField = typeof(Estate)
             .GetField("_updates", BindingFlags.Instance | BindingFlags.NonPublic);
 
         Assert.NotNull(updatesField);
@@ -456,54 +114,31 @@ public class EstateParticipantTests
         Assert.True(enumerator.MoveNext());
         Assert.Equal(update, enumerator.Current);
 
-        estate
-            .GetType()
+        typeof(Estate)
             .GetField("_status", BindingFlags.Instance | BindingFlags.NonPublic)
             ?.SetValue(estate, EstateStatus.Closed);
 
-        Assert.Throws<DomainException>(() =>
-        {
-            try
-            {
-                postUpdateMethod!.Invoke(estate, new[] { update, executor });
-            }
-            catch (TargetInvocationException ex)
-            {
-                throw ex.InnerException ?? ex;
-            }
-        });
+        Assert.Throws<DomainException>(() => estate.PostUpdate(update, executor));
 
-        var participantType = typeof(Estate)
-            .Assembly
-            .GetTypes()
-            .FirstOrDefault(t => t.Name == "Participant");
-        Assert.NotNull(participantType);
+        var unauthorizedExecutor = Executor.From(Guid.NewGuid());
 
-        var participantFrom = participantType!.GetMethod("From", BindingFlags.Public | BindingFlags.Static);
-        Assert.NotNull(participantFrom);
+        Assert.Throws<DomainException>(() => estate.PostUpdate(update, unauthorizedExecutor));
+    }
 
-        var participant = participantFrom!.Invoke(null, new object?[] { "jane.doe@example.com", "Jane", "Doe" });
-        Assert.NotNull(participant);
+    [Fact]
+    public void CloseShouldRemoveParticipants()
+    {
+        var estateId = EstateId.From(Guid.NewGuid());
+        var executorId = ExecutorId.From(Guid.NewGuid());
+        var estate = Estate.Create(estateId, executorId, EstateName.From("Estate Alpha"));
+        var executor = Executor.From(executorId.Value());
 
-        Assert.Throws<DomainException>(() =>
-        {
-            try
-            {
-                postUpdateMethod!.Invoke(estate, new[] { update, participant });
-            }
-            catch (ArgumentException)
-            {
-                throw new DomainException("Executor is required");
-            }
-            catch (TargetInvocationException ex)
-            {
-                if (ex.InnerException is ArgumentException)
-                {
-                    throw new DomainException("Executor is required");
-                }
+        estate.GrantParticipantAccess(Participant.From("john.doe@example.com", "John", "Doe"), executor);
+        estate.GrantParticipantAccess(Participant.From("jane.doe@example.com", "Jane", "Doe"), executor);
 
-                throw ex.InnerException ?? ex;
-            }
-        });
+        estate.Close();
+
+        Assert.Empty(estate.Participants());
+        Assert.Equal(EstateStatus.Closed, estate.Status);
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using EstateClear.Domain.Estates.ValueObjects;
 
 namespace EstateClear.Domain.Estates.Entities;
@@ -16,8 +15,7 @@ public class Estate
 
     private EstateName _displayName;
     private EstateStatus _status;
-    private Executor _executor;
-    private int _participantsCount;
+    private readonly Executor _executor;
     private readonly List<Participant> _participants = new();
     private readonly IList _contributions = new ArrayList();
     private readonly IList _updates = new ArrayList();
@@ -31,24 +29,6 @@ public class Estate
     public EstateStatus Status => _status;
 
     public IReadOnlyList<Participant> Participants() => _participants.AsReadOnly();
-
-    public void AddParticipant()
-    {
-        _participantsCount++;
-    }
-
-    public void AddParticipant(Participant participant)
-    {
-        foreach (var existing in _participants)
-        {
-            if (existing.Equals(participant))
-            {
-                throw new DomainException("Participant already exists");
-            }
-        }
-
-        _participants.Add(participant);
-    }
 
     public void GrantParticipantAccess(Participant participant, Executor executor)
     {
@@ -100,21 +80,6 @@ public class Estate
         _updates.Add(update);
     }
 
-    public void RemoveParticipant()
-    {
-        if (_status == EstateStatus.Closed)
-        {
-            throw new DomainException("Estate is closed");
-        }
-
-        if (_participantsCount == 0)
-        {
-            return;
-        }
-
-        _participantsCount--;
-    }
-
     public void RenameTo(EstateName newName)
     {
         if (_status == EstateStatus.Closed)
@@ -122,7 +87,7 @@ public class Estate
             throw new DomainException("Estate is closed");
         }
 
-        if (_participantsCount > 0)
+        if (_participants.Any())
         {
             throw new DomainException("Estate has participants");
         }
@@ -132,17 +97,12 @@ public class Estate
 
     public void Close()
     {
-        _participantsCount = 0;
+        _participants.Clear();
         _status = EstateStatus.Closed;
     }
 
     public static Estate Create(EstateId id, ExecutorId executorId, EstateName estateName)
     {
-        if (executorId is null)
-        {
-            throw new DomainException("Executor is required");
-        }
-
         if (executorId.Value() == Guid.Empty)
         {
             throw new DomainException("Executor is required");
