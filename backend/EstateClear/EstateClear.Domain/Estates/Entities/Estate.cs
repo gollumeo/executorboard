@@ -16,7 +16,7 @@ public class Estate
     private EstateName _displayName;
     private EstateStatus _status;
     private readonly Executor _executor;
-    private readonly List<Participant> _participants = new();
+    private readonly List<Participant> _participants = [];
     private readonly IList _contributions = new ArrayList();
     private readonly IList _updates = new ArrayList();
 
