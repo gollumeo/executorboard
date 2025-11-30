@@ -103,7 +103,7 @@ public class Estate
 
     public static Estate Create(EstateId id, ExecutorId executorId, EstateName estateName)
     {
-        if (executorId.Value() == Guid.Empty)
+        if (executorId is null || executorId.Value() == Guid.Empty)
         {
             throw new DomainException("Executor is required");
         }
