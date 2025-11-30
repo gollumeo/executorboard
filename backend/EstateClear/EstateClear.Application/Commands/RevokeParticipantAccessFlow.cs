@@ -1,4 +1,4 @@
-namespace EstateClear.Application;
+namespace EstateClear.Application.Commands;
 
 public sealed class RevokeParticipantAccessFlow(IEstates estates)
 {

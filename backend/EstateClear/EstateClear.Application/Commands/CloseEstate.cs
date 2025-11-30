@@ -1,8 +1,8 @@
 using EstateClear.Domain.Estates.ValueObjects;
 
-namespace EstateClear.Application;
+namespace EstateClear.Application.Commands;
 
-public sealed class EstateParticipantAdded(EstateId estateId)
+public sealed class CloseEstate(EstateId estateId)
 {
     public EstateId EstateId { get; } = estateId;
 }

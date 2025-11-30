@@ -1,6 +1,6 @@
 using EstateClear.Domain.Estates.ValueObjects;
 
-namespace EstateClear.Application;
+namespace EstateClear.Application.Queries;
 
 public sealed class ProjectMultipleEstates(ExecutorId executorId)
 {

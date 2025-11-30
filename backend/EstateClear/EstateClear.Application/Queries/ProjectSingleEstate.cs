@@ -1,8 +1,8 @@
 using EstateClear.Domain.Estates.ValueObjects;
 
-namespace EstateClear.Application;
+namespace EstateClear.Application.Queries;
 
-public sealed class EstateRenamed(EstateId estateId)
+public sealed class ProjectSingleEstate(EstateId estateId)
 {
     public EstateId EstateId { get; } = estateId;
 }

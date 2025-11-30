@@ -1,9 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using EstateClear.Application.DTOs;
 
-namespace EstateClear.Application;
+namespace EstateClear.Application.Queries;
 
 public sealed class ProjectMultipleEstatesFlow(IEstates estates)
 {

@@ -1,6 +1,6 @@
 using EstateClear.Domain.Estates.ValueObjects;
 
-namespace EstateClear.Application;
+namespace EstateClear.Application.Commands;
 
 public sealed class GrantParticipantAccess(EstateId estateId, Participant participant, Executor executor)
 {

@@ -1,21 +1,18 @@
-using System;
-using System.Threading.Tasks;
+namespace EstateClear.Application.Commands;
 
-namespace EstateClear.Application;
-
-public sealed class CloseEstateFlow(IEstates estates)
+public sealed class PostUpdateFlow(IEstates estates)
 {
-    public async Task Execute(CloseEstate input)
+    public async Task Execute(PostUpdate input)
     {
         var estate = await estates.Load(input.EstateId);
-
         if (estate is null)
         {
             throw new Exception("Estate not found");
         }
 
-        estate.Close();
+        estate.PostUpdate(input.Update, input.Executor);
 
         await estates.Save(estate);
+
     }
 }

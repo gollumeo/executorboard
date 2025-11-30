@@ -1,5 +1,5 @@
-using EstateClear.Application;
 using EstateClear.Application.DTOs;
+using EstateClear.Application.Queries;
 using EstateClear.Domain.Estates.Entities;
 using EstateClear.Domain.Estates.ValueObjects;
 
