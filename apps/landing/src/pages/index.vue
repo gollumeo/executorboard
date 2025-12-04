@@ -13,20 +13,29 @@
       <span class="dot"></span>
     </div>
 
-    <section class="section">
-      <div class="container space-y-6">
-        <p class="heading-md text-gold-quiet uppercase tracking-wide">ExecutorBoard</p>
-        <h2 class="heading-lg">Quiet luxury for estate executors</h2>
-        <p class="text-body">
-          A calm, sovereign workspace for attorneys and executors to keep heirs informed, decisions traceable,
-          and estates moving without friction.
-        </p>
-        <div class="flex flex-wrap gap-3">
-          <RouterLink class="btn-primary" to="/for-attorneys">Talk with our team</RouterLink>
-          <RouterLink class="btn-secondary btn-sm" to="/guides/how-to-keep-heirs-updated">Read the guide</RouterLink>
+    <div class="cta-bento-wrapper">
+      <section class="section">
+        <div class="container max-w-5xl">
+          <div class="cta-bento space-y-6">
+            <p class="cta-eyebrow">ExecutorBoard</p>
+            <h2 class="heading-lg">Quiet luxury for estate executors</h2>
+            <p class="text-body">
+              A calm, sovereign workspace for attorneys and executors to keep heirs informed, decisions traceable,
+              and estates moving without friction.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <RouterLink class="btn btn-primary" to="/for-attorneys">Talk with our team</RouterLink>
+              <RouterLink
+                class="btn btn-secondary btn-sm"
+                to="/guides/how-to-keep-heirs-updated"
+              >
+                Read the guide
+              </RouterLink>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 </template>
 

@@ -20,11 +20,16 @@
 @layer components {
 
     .container {
-        @apply mx-auto max-w-screen-xl px-4;
+        @apply mx-auto max-w-7xl px-4;
     }
 
     .section {
         @apply pt-10 pb-10 md:pt-16 md:pb-16;
+    }
+
+    .banner-premium {
+        @apply mt-8 py-12 md:mt-12 md:py-16;
+        background-color: rgba(10, 26, 47, 0.06);
     }
 
     .section--why-tight {
@@ -35,10 +40,50 @@
         margin-top: 0.75rem;
     }
 
-    @screen md {
+    @media (min-width: 768px) {
         .section--why-tight + .divider-space {
             margin-top: 1.25rem;
         }
+    }
+
+    .cta-bento-wrapper {
+        @apply pt-12 pb-16 md:pt-16 md:pb-20;
+    }
+
+    .cta-bento {
+        @apply rounded-soft p-10 shadow-xl md:p-14;
+        background-color: #0B1620;
+
+        box-shadow:
+                0 1px 2px rgba(255, 255, 255, 0.04),
+                0 10px 25px rgba(0, 0, 0, 0.35),
+                0 35px 55px rgba(0, 0, 0, 0.45);
+    }
+
+    .cta-eyebrow {
+        @apply uppercase tracking-wide text-[13px];
+        color: #C28A30;
+        opacity: 0.9;
+    }
+
+    .cta-bento h2 {
+        color: #FAF8F2;
+    }
+
+    .cta-bento p {
+        color: rgba(250, 248, 242, 0.8);
+    }
+
+    .cta-bento .cta-eyebrow {
+        @apply uppercase tracking-[0.28em] text-[12px] font-serif text-gold-quiet/95 relative top-px;
+    }
+
+    .cta-bento .btn-primary {
+        @apply bg-ivory text-navy-trust hover:bg-white;
+    }
+
+    .cta-bento .btn-secondary {
+        @apply border border-ivory/40 bg-transparent text-ivory hover:bg-ivory hover:text-navy-trust;
     }
 
     .heading-xl {
@@ -119,8 +164,7 @@
     }
 
     .separator-gold .dot {
-        @apply block h-2 w-2 rounded-full;
-        background-color: var(--gold-quiet, #cba04c);
+        @apply block h-2 w-2 rounded-full bg-gold-quiet;
         box-shadow: 0 0 2px rgba(255, 255, 255, 0.25);
     }
 }
