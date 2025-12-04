@@ -86,8 +86,8 @@
   }
 
   .separator-gold {
-    @apply relative mx-auto mt-14 flex items-center justify-center md:mt-16 mb-1 md:mb-2;
-    max-width: 48ch; /* width aligned with editorial grid */
+    @apply relative mx-auto my-10 flex items-center justify-center md:my-16;
+    max-width: 580px;
   }
 
   .separator-gold::before,
@@ -107,7 +107,8 @@
   .separator-gold .dot {
     width: 8px;
     height: 8px;
-    @apply block rounded-full bg-gold;
+    background-color: var(--gold, #d4a95f);
+    @apply block rounded-full;
     box-shadow: 0 0 2px rgba(255, 255, 255, 0.25);
   }
 }
