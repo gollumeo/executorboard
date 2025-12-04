@@ -61,7 +61,7 @@
     }
 
     .cta-eyebrow {
-        @apply uppercase tracking-wide text-[13px];
+        @apply uppercase tracking-wide text-sm;
         color: #C28A30;
         opacity: 0.9;
     }
@@ -75,7 +75,8 @@
     }
 
     .cta-bento .cta-eyebrow {
-        @apply uppercase tracking-[0.28em] text-[12px] font-serif text-gold-quiet/95 relative top-px;
+        @apply uppercase tracking-widest text-sm font-serif font-semibold;
+        color: #B8862A;
     }
 
     .cta-bento .btn-primary {
@@ -87,26 +88,26 @@
     }
 
     .heading-xl {
-        @apply font-serif font-semibold leading-tight text-anthracite text-[32px] md:text-[42px];
+        @apply font-serif font-semibold leading-tight text-anthracite text-3xl md:text-4xl;
     }
 
     .heading-lg {
-        @apply font-serif font-semibold leading-snug text-[22px] md:text-[26px];
+        @apply font-serif font-semibold leading-snug text-xl md:text-2xl;
     }
 
     .heading-md {
-        @apply font-serif font-medium text-[17px] md:text-[18px];
+        @apply font-serif font-medium text-lg md:text-xl;
     }
 
     .text-body {
-        @apply font-sans text-[15px] leading-relaxed text-anthracite;
+        @apply font-sans text-base leading-relaxed text-anthracite;
     }
 
     .btn,
     .btn-primary,
     .btn-secondary,
     .btn-sm {
-        @apply inline-flex items-center justify-center rounded-soft px-4 py-2 font-sans text-[15px] tracking-tight transition-colors duration-200;
+        @apply inline-flex items-center justify-center rounded-soft px-4 py-2 font-sans text-base tracking-tight transition-colors duration-200;
     }
 
     .btn-primary {
@@ -126,7 +127,7 @@
     }
 
     .muted {
-        @apply font-sans text-[15px] text-anthracite/70;
+        @apply font-sans text-base text-anthracite/70;
     }
 
     .icon-wrap {
