@@ -71,11 +71,11 @@
     }
 
     .cta-bento p {
-        color: rgba(250, 248, 242, 0.8);
+        @apply text-ivory/90;
     }
 
     .cta-bento .cta-eyebrow {
-        @apply uppercase tracking-widest text-sm font-serif font-semibold;
+        @apply uppercase tracking-widest text-[0.8125rem] font-serif font-semibold opacity-95 mt-1 mb-3;
         color: #B8862A;
     }
 
@@ -88,15 +88,15 @@
     }
 
     .heading-xl {
-        @apply font-serif font-semibold leading-tight text-anthracite text-3xl md:text-4xl;
+        @apply font-serif font-semibold leading-tight text-anthracite text-4xl md:text-5xl;
     }
 
     .heading-lg {
-        @apply font-serif font-semibold leading-snug text-xl md:text-2xl;
+        @apply font-serif font-semibold leading-snug text-2xl md:text-4xl;
     }
 
     .heading-md {
-        @apply font-serif font-medium text-lg md:text-xl;
+        @apply font-serif font-medium text-xl md:text-2xl;
     }
 
     .text-body {
