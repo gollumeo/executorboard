@@ -75,7 +75,7 @@
     }
 
     .cta-bento .cta-eyebrow {
-        @apply uppercase tracking-[0.25em] text-[0.8125rem] font-serif font-semibold opacity-95 mt-1 mb-3;
+        @apply uppercase tracking-widest text-[0.8125rem] font-serif font-semibold opacity-95 mt-1 mb-3;
         color: #B8862A;
     }
 
