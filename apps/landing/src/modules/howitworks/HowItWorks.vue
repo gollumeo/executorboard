@@ -7,7 +7,6 @@
       </p>
     </header>
 
-    <!-- TODO: consider 2-column layout at sm breakpoint if needed -->
     <ol class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
       <li class="card card-warm card-surface space-y-3">
         <span class="step-badge">1</span>
