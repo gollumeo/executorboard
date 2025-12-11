@@ -51,13 +51,9 @@
     }
 
     .cta-bento {
-        @apply rounded-soft p-10 shadow-xl md:p-14 max-md:py-8;
+        @apply rounded-soft p-10 md:p-14 max-md:py-8;
         background-color: #0B1620;
-
-        box-shadow:
-                0 1px 2px rgba(255, 255, 255, 0.04),
-                0 10px 25px rgba(0, 0, 0, 0.35),
-                0 35px 55px rgba(0, 0, 0, 0.45);
+        box-shadow: 0 18px 48px -8px rgba(0, 0, 0, 0.18);
     }
 
     .cta-eyebrow {
@@ -88,15 +84,15 @@
     }
 
     .heading-xl {
-        @apply font-serif font-semibold leading-tight text-anthracite text-4xl md:text-5xl;
+        @apply font-serif font-semibold leading-tight text-anthracite text-4xl md:text-5xl tracking-[0.01em] md:tracking-[0.015em] lg:tracking-normal md:leading-[1.15];
     }
 
     .heading-lg {
-        @apply font-serif font-semibold leading-snug tracking-wide text-2xl md:text-4xl;
+        @apply font-serif font-semibold leading-snug text-2xl md:text-4xl tracking-[0.01em] md:tracking-[0.015em] lg:tracking-normal md:leading-[1.15];
     }
 
     .heading-md {
-        @apply font-serif font-semibold leading-snug tracking-normal text-base md:text-lg text-[#121212] max-sm:leading-snug max-sm:tracking-tight;
+        @apply font-serif font-semibold leading-snug tracking-[0.01em] md:tracking-[0.015em] lg:tracking-normal text-base md:text-lg text-[#121212] max-sm:leading-snug max-sm:tracking-tight;
     }
 
     @media (max-width: 639px) {
@@ -142,7 +138,7 @@
     }
 
     .card {
-        @apply rounded-soft border border-anthracite/15 bg-white px-5 py-6 shadow-md transition-shadow hover:border-anthracite/20 hover:shadow-md/30 md:border-anthracite/20 md:p-8 md:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_6px_16px_rgba(0,0,0,0.06)];
+        @apply rounded-soft border border-anthracite/15 bg-white px-5 py-6 shadow-md transition-shadow hover:border-anthracite/20 hover:shadow-md/30 md:border-anthracite/20 md:p-8 md:shadow-[0_12px_32px_-4px_rgba(0,0,0,0.22)];
     }
 
     .card-warm {
