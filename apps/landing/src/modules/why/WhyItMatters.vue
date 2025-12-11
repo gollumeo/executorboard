@@ -6,7 +6,7 @@
     </header>
 
     <!-- TODO: consider 2-column layout at sm breakpoint if needed -->
-    <ul class="container mt-6 md:mt-8 grid card-gap grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
+    <ul class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
       <li class="card card-warm card-surface space-y-3">
         <h3 class="heading-md">Clarity reduces friction</h3>
         <p class="text-body muted">
@@ -22,7 +22,7 @@
         </p>
       </li>
 
-      <li class="card card-warm card-surface space-y-3 md:col-span-2 md:max-w-lg md:mx-auto xl:col-span-1">
+      <li class="card card-warm card-surface space-y-3 md:col-span-2 md:max-w-lg md:mx-auto xl:col-span-1 xl:max-w-full">
         <h3 class="heading-md">Transparency supports fairness</h3>
         <p class="text-body muted">
           Every heir receives the same information, reinforcing trust and supporting documented, equitable
