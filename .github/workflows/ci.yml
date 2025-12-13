@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [ main ]
 
   workflow_call:
     inputs:
@@ -68,7 +68,7 @@ jobs:
         working-directory: apps/api/ExecutorBoard
 
       - name: Test (TDD gate)
-        run: dotnet test --no-build
+        run: dotnet test
         working-directory: apps/api/ExecutorBoard
 
       - name: Docker build (no push)
