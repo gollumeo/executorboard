@@ -1,6 +1,4 @@
-using DotNet.Testcontainers.Builders;
-using DotNet.Testcontainers.Configurations;
-using DotNet.Testcontainers.Containers;
+using Testcontainers.PostgreSql;
 
 namespace ExecutorBoard.SystemTests.TestHost;
 
@@ -9,24 +7,19 @@ namespace ExecutorBoard.SystemTests.TestHost;
 /// </summary>
 public class PostgreSqlDatabaseFixture : IAsyncLifetime
 {
-    private readonly PostgreSqlTestcontainer _container;
+    private readonly PostgreSqlContainer _container;
 
     public PostgreSqlDatabaseFixture()
     {
         var databaseName = $"systemtests_{Guid.NewGuid():N}";
-        _container = new TestcontainersBuilder<PostgreSqlTestcontainer>()
-            .WithDatabase(new PostgreSqlTestcontainerConfiguration
-            {
-                Database = databaseName,
-                Username = "postgres",
-                Password = "postgres"
-            })
-            .WithImage("postgres:16-alpine")
-            .WithCleanUp(true)
+        _container = new PostgreSqlBuilder()
+            .WithDatabase(databaseName)
+            .WithUsername("postgres")
+            .WithPassword("postgres")
             .Build();
     }
 
-    public string ConnectionString => _container.ConnectionString;
+    public string ConnectionString => _container.GetConnectionString();
 
     public Task InitializeAsync() => _container.StartAsync();
 

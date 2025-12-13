@@ -15,18 +15,13 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Runeforge>
     public CustomWebApplicationFactory(string systemConnectionString)
     {
         _systemConnectionString = systemConnectionString;
+        Environment.SetEnvironmentVariable("SystemBootstrap__ConnectionString", _systemConnectionString);
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("SystemTests");
         builder.ConfigureAppConfiguration((_, configurationBuilder) =>
-        {
-            configurationBuilder.AddJsonFile("appsettings.SystemTests.json", optional: true);
-            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
-            {
-                ["SystemBootstrap:ConnectionString"] = _systemConnectionString
-            });
-        });
+            configurationBuilder.AddJsonFile("appsettings.SystemTests.json", optional: true));
     }
 }
