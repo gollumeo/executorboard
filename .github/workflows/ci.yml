@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+  workflow_call:
+    inputs:
+      run_api:
+        type: boolean
+        default: true
+      run_landing:
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      api: ${{ steps.set.outputs.api }}
+      landing: ${{ steps.set.outputs.landing }}
+    steps:
+      - uses: actions/checkout@v6 :contentReference[oaicite:0]{index=0}
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes (push/PR)
+        id: filter
+        if: github.event_name != 'workflow_call'
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            api:
+              - 'apps/api/**'
+            landing:
+              - 'apps/landing/**'
+
+      - name: Set outputs
+        id: set
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_call" ]]; then
+            echo "api=${{ inputs.run_api }}" >> "$GITHUB_OUTPUT"
+            echo "landing=${{ inputs.run_landing }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "api=${{ steps.filter.outputs.api }}" >> "$GITHUB_OUTPUT"
+            echo "landing=${{ steps.filter.outputs.landing }}" >> "$GITHUB_OUTPUT"
+          fi
+
+  api:
+    name: API – tests (+ docker build sanity)
+    needs: changes
+    if: needs.changes.outputs.api == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6 :contentReference[oaicite:1]{index=1}
+
+      - uses: actions/setup-dotnet@v5 :contentReference[oaicite:2]{index=2}
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore
+        working-directory: apps/api/ExecutorBoard
+
+      - name: Test (TDD gate)
+        run: dotnet test --no-build
+        working-directory: apps/api/ExecutorBoard
+
+      - name: Docker build (no push)
+        run: docker build -t executorboard-api:ci .
+        working-directory: apps/api/ExecutorBoard
+
+  landing:
+    name: Landing – build (+ docker build sanity)
+    needs: changes
+    if: needs.changes.outputs.landing == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - run: npm i -g pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+        working-directory: apps/landing
+
+      - name: Build
+        run: pnpm build
+        working-directory: apps/landing
+
+      - name: Docker build (no push)
+        run: docker build -t executorboard-landing:ci .
+        working-directory: apps/landing
