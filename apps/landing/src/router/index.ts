@@ -22,6 +22,6 @@ export const routes: RouteRecordRaw[] = [
   },
 ];
 
-export const history = import.meta?.env?.SSR
+export const history = import.meta.env.SSR
   ? createMemoryHistory(import.meta.env.BASE_URL)
   : createWebHistory(import.meta.env.BASE_URL);
