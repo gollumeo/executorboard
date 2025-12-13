@@ -1,9 +1,8 @@
-LABEL authors="gollumeo"
-
 # =========================
 # Build stage
 # =========================
 FROM node:20-alpine AS build
+LABEL authors="gollumeo"
 WORKDIR /app
 
 # Install deps

@@ -1,8 +1,8 @@
 # =========================
 # Build stage
 # =========================
-LABEL authors="gollumeo"
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+LABEL authors="gollumeo"
 WORKDIR /src
 
 # Copy solution & projects
