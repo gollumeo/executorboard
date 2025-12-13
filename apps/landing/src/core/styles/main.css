@@ -2,6 +2,7 @@
 @import "./theme.css";
 
 @layer base {
+
     body {
         @apply bg-ivory text-anthracite font-sans;
     }
