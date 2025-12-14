@@ -92,5 +92,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl -fsS -X POST \
-            "https://coolify.pierre-mauriello.be/webhooks/source/github/events/manual?branch=main"
+          curl -fsS -X GET \
+            "${{ secrets.COOLIFY_LANDING_WEBHOOK }}" \
+            -H "Authorization: Bearer ${{ secrets.COOLIFY_API_TOKEN }}"
