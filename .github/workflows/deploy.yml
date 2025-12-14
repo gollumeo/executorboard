@@ -94,5 +94,3 @@ jobs:
       - run: |
           curl -fsS -X POST "${{ secrets.COOLIFY_LANDING_WEBHOOK }}" \
           -H "Authorization: Bearer ${{ secrets.COOLIFY_API_TOKEN }}"
-            }
-          }'
