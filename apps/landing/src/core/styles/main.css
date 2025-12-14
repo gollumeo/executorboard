@@ -25,7 +25,11 @@
     }
 
     .section {
-        @apply pt-8 pb-8 md:pt-14 md:pb-14 max-md:mt-10 max-md:mb-6;
+        @apply pt-10 pb-10 md:pt-14 md:pb-14;
+    }
+
+    .section--hero {
+        @apply pt-8 pb-6 md:pt-14 md:pb-14;
     }
 
     .banner-premium {
@@ -48,7 +52,7 @@
     }
 
     .cta-bento-wrapper {
-        @apply pt-10 pb-14 md:pt-14 md:pb-16;
+        @apply pt-8 pb-10 md:pt-14 md:pb-16;
     }
 
     .cta-bento {
@@ -94,13 +98,6 @@
 
     .heading-md {
         @apply font-serif font-semibold leading-snug tracking-[0.01em] md:tracking-[0.015em] lg:tracking-normal text-base md:text-lg text-[#121212] max-sm:leading-snug max-sm:tracking-tight;
-    }
-
-    @media (max-width: 639px) {
-        .heading-md {
-            word-break: normal;
-            hyphens: auto;
-        }
     }
 
     .text-body {
@@ -193,6 +190,10 @@
 @layer utilities {
     .divider-space {
         @apply my-5 md:my-8;
+    }
+
+    .text-wrap {
+        @apply wrap-break-word hyphens-auto;
     }
 
     .card-gap {
