@@ -92,5 +92,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl -fsS -X GET "${{ secrets.COOLIFY_LANDING_WEBHOOK }}" \
+          curl -fsS -X POST "${{ secrets.COOLIFY_LANDING_WEBHOOK }}" \
           -H "Authorization: Bearer ${{ secrets.COOLIFY_API_TOKEN }}"
