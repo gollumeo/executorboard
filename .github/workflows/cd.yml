@@ -13,6 +13,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # --------------------------------------------------
+  # Detect changes
+  # --------------------------------------------------
   changes:
     runs-on: ubuntu-latest
     outputs:
@@ -32,15 +35,33 @@ jobs:
             landing:
               - 'apps/landing/**'
 
-  ci:
+  # --------------------------------------------------
+  # CI – API (isolated)
+  # --------------------------------------------------
+  ci-api:
     needs: changes
+    if: needs.changes.outputs.api == 'true'
     uses: ./.github/workflows/ci.yml
     with:
-      run_api: ${{ needs.changes.outputs.api == 'true' }}
-      run_landing: ${{ needs.changes.outputs.landing == 'true' }}
+      run_api: true
+      run_landing: false
 
+  # --------------------------------------------------
+  # CI – Landing (isolated)
+  # --------------------------------------------------
+  ci-landing:
+    needs: changes
+    if: needs.changes.outputs.landing == 'true'
+    uses: ./.github/workflows/ci.yml
+    with:
+      run_api: false
+      run_landing: true
+
+  # --------------------------------------------------
+  # Publish API
+  # --------------------------------------------------
   publish-api:
-    needs: [ changes, ci ]
+    needs: [ changes, ci-api ]
     if: needs.changes.outputs.api == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -60,6 +81,9 @@ jobs:
             ghcr.io/${{ github.repository }}/executorboard-api:latest
             ghcr.io/${{ github.repository }}/executorboard-api:${{ github.sha }}
 
+  # --------------------------------------------------
+  # Deploy API
+  # --------------------------------------------------
   deploy-api:
     needs: publish-api
     runs-on: ubuntu-latest
@@ -69,8 +93,11 @@ jobs:
             "${{ secrets.COOLIFY_API_WEBHOOK }}" \
             -H "Authorization: Bearer ${{ secrets.COOLIFY_API_TOKEN }}"
 
+  # --------------------------------------------------
+  # Publish Landing
+  # --------------------------------------------------
   publish-landing:
-    needs: [ changes, ci ]
+    needs: [ changes, ci-landing ]
     if: needs.changes.outputs.landing == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -92,6 +119,9 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+  # --------------------------------------------------
+  # Deploy Landing
+  # --------------------------------------------------
   deploy-landing:
     needs: publish-landing
     runs-on: ubuntu-latest

@@ -3,6 +3,7 @@
 # =========================
 FROM node:20-alpine AS build
 LABEL authors="gollumeo"
+
 WORKDIR /app
 
 # Enable corepack (pnpm sans npm install)
