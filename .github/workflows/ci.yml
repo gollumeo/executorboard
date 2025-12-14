@@ -28,7 +28,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Detect changes (push/PR)
+      - name: Detect changes
         id: filter
         if: github.event_name != 'workflow_call'
         uses: dorny/paths-filter@v3
@@ -41,7 +41,6 @@ jobs:
 
       - name: Set outputs
         id: set
-        shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "workflow_call" ]]; then
             echo "api=${{ inputs.run_api }}" >> "$GITHUB_OUTPUT"
@@ -52,7 +51,7 @@ jobs:
           fi
 
   api:
-    name: API – tests (+ docker build sanity)
+    name: API – tests only
     needs: changes
     if: needs.changes.outputs.api == 'true'
     runs-on: ubuntu-latest
@@ -63,20 +62,14 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Restore
-        run: dotnet restore
+      - run: dotnet restore
         working-directory: apps/api/ExecutorBoard
 
-      - name: Test (TDD gate)
-        run: dotnet test
-        working-directory: apps/api/ExecutorBoard
-
-      - name: Docker build (no push)
-        run: docker build -t executorboard-api:ci .
+      - run: dotnet test
         working-directory: apps/api/ExecutorBoard
 
   landing:
-    name: Landing – build (+ docker build sanity)
+    name: Landing – build only
     needs: changes
     if: needs.changes.outputs.landing == 'true'
     runs-on: ubuntu-latest
@@ -89,14 +82,8 @@ jobs:
 
       - run: npm i -g pnpm
 
-      - name: Install deps
-        run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
         working-directory: apps/landing
 
-      - name: Build
-        run: pnpm build
-        working-directory: apps/landing
-
-      - name: Docker build (no push)
-        run: docker build -t executorboard-landing:ci .
+      - run: pnpm build
         working-directory: apps/landing

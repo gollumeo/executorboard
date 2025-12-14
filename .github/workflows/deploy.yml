@@ -2,7 +2,7 @@ name: CD
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -40,7 +40,7 @@ jobs:
       run_landing: ${{ needs.changes.outputs.landing == 'true' }}
 
   publish-api:
-    needs: [changes, ci]
+    needs: [ changes, ci ]
     if: needs.changes.outputs.api == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -67,7 +67,7 @@ jobs:
       - run: curl -fsS -X POST "${{ secrets.COOLIFY_API_WEBHOOK }}"
 
   publish-landing:
-    needs: [changes, ci]
+    needs: [ changes, ci ]
     if: needs.changes.outputs.landing == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -86,6 +86,8 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}/executorboard-landing:latest
             ghcr.io/${{ github.repository }}/executorboard-landing:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   deploy-landing:
     needs: publish-landing

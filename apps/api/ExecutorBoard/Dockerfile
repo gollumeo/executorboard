@@ -1,7 +1,7 @@
 # =========================
 # Build stage
 # =========================
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0.1 AS build
 LABEL authors="gollumeo"
 WORKDIR /src
 
@@ -29,7 +29,7 @@ RUN dotnet publish ExecutorBoard.Api \
 # =========================
 # Runtime stage
 # =========================
-FROM mcr.microsoft.com/dotnet/aspnet:10.0
+FROM mcr.microsoft.com/dotnet/aspnet:10.0.1
 WORKDIR /app
 
 ENV ASPNETCORE_URLS=http://+:8080
