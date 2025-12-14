@@ -64,7 +64,10 @@ jobs:
     needs: publish-api
     runs-on: ubuntu-latest
     steps:
-      - run: curl -fsS -X POST "${{ secrets.COOLIFY_API_WEBHOOK }}"
+      - run: |
+          curl -fsS -X GET \
+            "${{ secrets.COOLIFY_API_WEBHOOK }}" \
+            -H "Authorization: Bearer ${{ secrets.COOLIFY_API_TOKEN }}"
 
   publish-landing:
     needs: [ changes, ci ]
