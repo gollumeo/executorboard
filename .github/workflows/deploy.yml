@@ -98,6 +98,6 @@ jobs:
           -d '{
             "ref": "refs/heads/main",
             "repository": {
-              "full_name": "'"${{ github.repository }}"'"
+              "full_name": "${{ github.repository }}"
             }
-          }
+          }'
