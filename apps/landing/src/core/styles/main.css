@@ -189,7 +189,7 @@
     .divider-space {
         @apply my-5 md:my-8;
     }
-
+ 
     .text-wrap {
         @apply wrap-break-word hyphens-auto;
     }

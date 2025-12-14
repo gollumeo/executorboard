@@ -4,7 +4,8 @@ on:
   pull_request:
   push:
     branches: [ main ]
-
+  workflow_dispatch:
+  
   workflow_call:
     inputs:
       run_api:
@@ -19,6 +20,7 @@ permissions:
 
 jobs:
   changes:
+    if: github.event_name != 'workflow_call'
     runs-on: ubuntu-latest
     outputs:
       api: ${{ steps.set.outputs.api }}
