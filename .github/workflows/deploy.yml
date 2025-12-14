@@ -92,4 +92,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl -fsS -X POST "https://coolify.pierre-mauriello.be/webhooks/source/github/events/manual"
+          curl -fsS -X POST \
+            "https://coolify.pierre-mauriello.be/webhooks/source/github/events/manual?branch=main"
