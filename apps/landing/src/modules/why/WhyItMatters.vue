@@ -2,7 +2,7 @@
   <section aria-labelledby="why-title" class="section section--why-tight mb-10 md:mb-16">
     <header class="mx-auto max-w-2xl space-y-2 text-center">
       <h2 id="why-title" class="heading-lg max-sm:text-3xl max-sm:tracking-normal max-sm:leading-snug sm:tracking-wide">Why it matters</h2>
-      <p class="text-body muted text-wrap">ExecutorBoard changes the entire dynamic of estate administration.</p>
+      <p class="text-body muted max-md:px-6 text-wrap">ExecutorBoard changes the entire dynamic of estate administration.</p>
     </header>
 
     <ul class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
