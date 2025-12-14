@@ -5,7 +5,6 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 LABEL authors="gollumeo"
 WORKDIR /src
 
-# Copy solution & projects
 COPY ExecutorBoard.sln .
 COPY ExecutorBoard.Api/ExecutorBoard.Api.csproj ExecutorBoard.Api/
 COPY ExecutorBoard.Application/ExecutorBoard.Application.csproj ExecutorBoard.Application/
@@ -14,14 +13,12 @@ COPY ExecutorBoard.Infrastructure/ExecutorBoard.Infrastructure.csproj ExecutorBo
 COPY ExecutorBoard.Persistence/ExecutorBoard.Persistence.csproj ExecutorBoard.Persistence/
 COPY ExecutorBoard.Presentation/ExecutorBoard.Presentation.csproj ExecutorBoard.Presentation/
 
-# Restore once (cache friendly)
-RUN dotnet restore
+# 🔑 Restore ciblé
+RUN dotnet restore ExecutorBoard.Api/ExecutorBoard.Api.csproj
 
-# Copy the rest
 COPY . .
 
-# Publish (no dev artifacts)
-RUN dotnet publish ExecutorBoard.Api \
+RUN dotnet publish ExecutorBoard.Api/ExecutorBoard.Api.csproj \
     -c Release \
     -o /app/publish \
     --no-restore
