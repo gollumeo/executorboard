@@ -188,6 +188,7 @@
 }
 
 @layer utilities {
+
     .divider-space {
         @apply my-5 md:my-8;
     }
