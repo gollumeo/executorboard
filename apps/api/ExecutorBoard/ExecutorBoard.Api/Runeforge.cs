@@ -8,6 +8,6 @@ public class Runeforge : DormantRuneforge
 {
     protected override IEnumerable<IRune> Frostmourne()
     {
-        yield return new SystemBootstrapRune(); // system/bootstrap only
+        yield return new SystemBootstrapRune();
     }
 }

@@ -53,7 +53,9 @@ jobs:
   api:
     name: API – tests only
     needs: changes
-    if: needs.changes.outputs.api == 'true'
+    if: >
+      needs.changes.outputs.api == 'true'
+      && inputs.run_api == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -71,7 +73,9 @@ jobs:
   landing:
     name: Landing – build only
     needs: changes
-    if: needs.changes.outputs.landing == 'true'
+    if: >
+      needs.changes.outputs.landing == 'true'
+      && inputs.run_landing == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
