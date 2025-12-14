@@ -91,4 +91,13 @@ jobs:
     needs: publish-landing
     runs-on: ubuntu-latest
     steps:
-      - run: curl -fsS -X POST "${{ secrets.COOLIFY_LANDING_WEBHOOK }}"
+      - run: |
+          curl -X POST "${{ secrets.COOLIFY_LANDING_WEBHOOK }}" \
+          -H "Content-Type: application/json" \
+          -H "X-GitHub-Event: push" \
+          -d '{
+            "ref": "refs/heads/main",
+            "repository": {
+              "full_name": "'"${{ github.repository }}"'"
+            }
+          }
