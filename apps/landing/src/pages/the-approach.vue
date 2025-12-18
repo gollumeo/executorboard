@@ -11,13 +11,10 @@
           ordinary messaging unstable. It does not replace counsel. It does not decide. It provides a shared form that
           keeps facts, documents, and decisions coherent.
         </p>
-        <div class="pt-1">
-          <RouterLink class="muted text-sm inline-flex hover:text-anthracite" to="/for-attorneys">For attorneys</RouterLink>
-        </div>
       </template>
 
       <template #right>
-        <aside class="card card-warm space-y-4 shadow-none hover:shadow-none md:shadow-none">
+        <aside class="card card-warm card-surface space-y-4">
           <h2 class="heading-md">A minimal structure</h2>
           <ul class="space-y-3">
             <li class="flex items-start gap-3">
@@ -103,7 +100,7 @@
           </p>
         </li>
 
-        <li class="card card-warm card-surface space-y-3 sm:col-span-2 sm:max-w-3xl sm:mx-auto">
+        <li class="card card-warm card-surface space-y-3">
           <p class="text-body muted text-wrap">
             It also protects the executor—and counsel—by making communication less personal. The record becomes the
             point of contact for routine questions, and direct outreach becomes more intentional.
@@ -166,7 +163,7 @@
       />
 
       <ul class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
-        <li class="card card-surface space-y-3 shadow-none hover:shadow-none md:shadow-none">
+        <li class="card card-warm card-surface space-y-3">
           <h3 class="heading-md">No legal advice</h3>
           <p class="text-body muted text-wrap">
             The workspace is for factual progress and supporting documents. Legal interpretation remains with counsel
@@ -174,7 +171,7 @@
           </p>
         </li>
 
-        <li class="card card-surface space-y-3 shadow-none hover:shadow-none md:shadow-none">
+        <li class="card card-warm card-surface space-y-3">
           <h3 class="heading-md">No legal automation</h3>
           <p class="text-body muted text-wrap">
             ExecutorBoard does not evaluate options, recommend outcomes, or simulate judgment. It documents what was
@@ -183,7 +180,7 @@
         </li>
 
         <li
-          class="card card-surface space-y-3 shadow-none hover:shadow-none md:shadow-none sm:col-span-2 sm:max-w-lg sm:mx-auto xl:col-span-1 xl:max-w-full"
+          class="card card-warm card-surface space-y-3 sm:col-span-2 sm:max-w-lg sm:mx-auto xl:col-span-1 xl:max-w-full"
         >
           <h3 class="heading-md">No pressure to perform</h3>
           <p class="text-body muted text-wrap">
@@ -204,7 +201,7 @@
       />
 
       <div class="container mt-6 md:mt-8">
-        <div class="card card-surface space-y-6 shadow-none hover:shadow-none md:shadow-none md:p-10">
+        <div class="card card-warm card-surface space-y-6 md:p-10">
           <p class="text-body muted text-wrap">
             ExecutorBoard is offered as a paid subscription per estate. The goal is not adoption at any cost, but a
             reliable reference that reduces confusion and protects relationships when stakes are high.
