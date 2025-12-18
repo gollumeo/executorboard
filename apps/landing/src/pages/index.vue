@@ -13,7 +13,7 @@
     >
       <template #actions>
         <RouterLink class="btn btn-primary max-md:py-3" to="/for-attorneys">For attorneys</RouterLink>
-        <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/guides/how-to-keep-heirs-updated">
+        <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/the-approach">
           The approach
         </RouterLink>
       </template>

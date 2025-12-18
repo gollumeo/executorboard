@@ -11,7 +11,7 @@
           stays consistent, calm, and traceable without turning your practice into the messenger.
         </p>
         <div class="flex flex-wrap gap-3">
-          <RouterLink class="btn btn-primary max-md:py-3" to="/guides/how-to-keep-heirs-updated">
+          <RouterLink class="btn btn-primary max-md:py-3" to="/the-approach">
             The approach
           </RouterLink>
           <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/">Back to home</RouterLink>
@@ -209,7 +209,7 @@
       description="ExecutorBoard is a paid subscription, provisioned per estate. It exists to maintain order in communication and documentation—without providing legal advice or automating legal judgment."
     >
       <template #actions>
-        <RouterLink class="btn btn-primary max-md:py-3" to="/guides/how-to-keep-heirs-updated">
+        <RouterLink class="btn btn-primary max-md:py-3" to="/the-approach">
           The approach
         </RouterLink>
         <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/">Back to home</RouterLink>
