@@ -1,24 +1,24 @@
 <template>
   <main class="bg-ivory">
-    <header class="section section--hero">
-      <div class="container grid items-center gap-8 md:grid-cols-2">
-        <div class="space-y-6">
-          <p class="muted uppercase tracking-wide text-sm max-md:pt-0 max-md:pb-1 text-wrap">
-            For attorneys
-          </p>
-          <h1 class="heading-xl">A quiet record for estate communication</h1>
-          <p class="text-body text-wrap">
-            ExecutorBoard is a structured reference point for updates, documents, and decisions—so estate communication
-            stays consistent, calm, and traceable without turning your practice into the messenger.
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <RouterLink class="btn btn-primary max-md:py-3" to="/guides/how-to-keep-heirs-updated">
-              The approach
-            </RouterLink>
-            <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/">Back to home</RouterLink>
-          </div>
+    <HeroSplit gap-class="gap-8">
+      <template #left>
+        <p class="muted uppercase tracking-wide text-sm max-md:pt-0 max-md:pb-1 text-wrap">
+          For attorneys
+        </p>
+        <h1 class="heading-xl">A quiet record for estate communication</h1>
+        <p class="text-body text-wrap">
+          ExecutorBoard is a structured reference point for updates, documents, and decisions—so estate communication
+          stays consistent, calm, and traceable without turning your practice into the messenger.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <RouterLink class="btn btn-primary max-md:py-3" to="/guides/how-to-keep-heirs-updated">
+            The approach
+          </RouterLink>
+          <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/">Back to home</RouterLink>
         </div>
+      </template>
 
+      <template #right>
         <aside class="card card-warm card-surface space-y-4">
           <h2 class="heading-md">Practice alignment</h2>
           <ul class="space-y-3">
@@ -40,8 +40,8 @@
             </li>
           </ul>
         </aside>
-      </div>
-    </header>
+      </template>
+    </HeroSplit>
 
     <GoldDivider />
 
@@ -204,24 +204,17 @@
       </div>
     </section>
 
-    <section class="cta-bento-wrapper">
-      <div class="container max-w-5xl">
-        <div class="cta-bento space-y-6">
-          <p class="cta-eyebrow">EXECUTORBOARD</p>
-          <h2 class="heading-lg">A disciplined reference, offered per estate</h2>
-          <p class="text-body max-sm:text-[15px] max-sm:leading-relaxed text-wrap">
-            ExecutorBoard is a paid subscription, provisioned per estate. It exists to maintain order in communication
-            and documentation—without providing legal advice or automating legal judgment.
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <RouterLink class="btn btn-primary max-md:py-3" to="/guides/how-to-keep-heirs-updated">
-              The approach
-            </RouterLink>
-            <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/">Back to home</RouterLink>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CtaBento
+      title="A disciplined reference, offered per estate"
+      description="ExecutorBoard is a paid subscription, provisioned per estate. It exists to maintain order in communication and documentation—without providing legal advice or automating legal judgment."
+    >
+      <template #actions>
+        <RouterLink class="btn btn-primary max-md:py-3" to="/guides/how-to-keep-heirs-updated">
+          The approach
+        </RouterLink>
+        <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/">Back to home</RouterLink>
+      </template>
+    </CtaBento>
 
     <div class="container pb-10 md:pb-14">
       <RouterLink class="muted text-sm inline-flex items-center gap-2 hover:text-anthracite" to="/">
@@ -233,6 +226,8 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import CtaBento from '../ui/CtaBento.vue';
 import GoldDivider from '../ui/GoldDivider.vue';
+import HeroSplit from '../ui/HeroSplit.vue';
 import SectionHeading from '../ui/SectionHeading.vue';
 </script>

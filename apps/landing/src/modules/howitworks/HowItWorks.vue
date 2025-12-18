@@ -1,9 +1,10 @@
 <template>
   <section aria-labelledby="how-it-works-title" class="section">
-    <header class="mx-auto max-w-2xl space-y-2 text-center">
-      <h2 id="how-it-works-title" class="heading-lg max-sm:text-3xl max-sm:tracking-normal max-sm:leading-snug sm:tracking-wide">How it works</h2>
-      <p class="text-body muted max-md:px-6 text-wrap">ExecutorBoard turns chaotic communication into a calm, structured process.</p>
-    </header>
+    <SectionHeading
+      id="how-it-works-title"
+      title="How it works"
+      subtitle="ExecutorBoard turns chaotic communication into a calm, structured process."
+    />
 
     <ol class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
       <li class="card card-warm card-surface space-y-3">
@@ -32,3 +33,7 @@
     </ol>
   </section>
 </template>
+
+<script setup lang="ts">
+import SectionHeading from '../../ui/SectionHeading.vue';
+</script>

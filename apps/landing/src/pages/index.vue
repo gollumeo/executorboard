@@ -1,46 +1,23 @@
 <template>
   <main class="bg-ivory">
     <HeroSection />
-    <div class="separator-gold divider-space">
-      <span class="dot"></span>
-    </div>
+    <GoldDivider />
     <HowItWorks />
-    <div class="separator-gold divider-space">
-      <span class="dot"></span>
-    </div>
+    <GoldDivider />
     <WhyItMatters />
-    <div class="separator-gold divider-space">
-      <span class="dot"></span>
-    </div>
+    <GoldDivider />
 
-    <section class="cta-bento-wrapper">
-      <div class="container max-w-5xl">
-        <div class="cta-bento space-y-6">
-          <p class="cta-eyebrow">EXECUTORBOARD</p>
-          <h2 class="heading-lg">
-            A structured, sovereign workspace for estate communication
-          </h2>
-          <p
-            class="text-body max-sm:text-[15px] max-sm:leading-relaxed text-wrap"
-          >
-            A dedicated environment where executors and attorneys maintain
-            clarity, document progress, and keep heirs aligned without repeated
-            outreach.
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <RouterLink class="btn btn-primary max-md:py-3" to="/for-attorneys"
-              >For attorneys</RouterLink
-            >
-            <RouterLink
-              class="btn btn-secondary btn-sm max-md:py-3"
-              to="/guides/how-to-keep-heirs-updated"
-            >
-              The approach
-            </RouterLink>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CtaBento
+      title="A structured, sovereign workspace for estate communication"
+      description="A dedicated environment where executors and attorneys maintain clarity, document progress, and keep heirs aligned without repeated outreach."
+    >
+      <template #actions>
+        <RouterLink class="btn btn-primary max-md:py-3" to="/for-attorneys">For attorneys</RouterLink>
+        <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/guides/how-to-keep-heirs-updated">
+          The approach
+        </RouterLink>
+      </template>
+    </CtaBento>
   </main>
 </template>
 
@@ -48,4 +25,6 @@
 import HeroSection from "../modules/hero/HeroSection.vue";
 import HowItWorks from "../modules/howitworks/HowItWorks.vue";
 import WhyItMatters from "../modules/why/WhyItMatters.vue";
+import CtaBento from "../ui/CtaBento.vue";
+import GoldDivider from "../ui/GoldDivider.vue";
 </script>
