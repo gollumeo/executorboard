@@ -1,6 +1,16 @@
 <template>
   <main class="bg-ivory">
     <HeroSection />
+
+    <section class="section">
+      <div class="container py-8 md:py-12">
+        <p class="heading-lg text-center text-wrap mx-auto max-w-3xl">
+          Legal work is expensive.<br />
+          “Any update?” is noise.
+        </p>
+      </div>
+    </section>
+
     <GoldDivider />
     <HowItWorks />
     <GoldDivider />
