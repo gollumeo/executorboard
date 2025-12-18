@@ -12,10 +12,10 @@
             stays consistent, calm, and traceable without turning your practice into the messenger.
           </p>
           <div class="flex flex-wrap gap-3">
-            <a class="btn btn-primary max-md:py-3" href="#fit">Estate File</a>
-            <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/guides/how-to-keep-heirs-updated">
-              Estate Protocol
+            <RouterLink class="btn btn-primary max-md:py-3" to="/guides/how-to-keep-heirs-updated">
+              The approach
             </RouterLink>
+            <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/">Back to home</RouterLink>
           </div>
         </div>
 
@@ -214,14 +214,20 @@
             and documentation—without providing legal advice or automating legal judgment.
           </p>
           <div class="flex flex-wrap gap-3">
-            <a class="btn btn-primary max-md:py-3" href="#fit">Estate File</a>
-            <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/guides/how-to-keep-heirs-updated">
-              Estate Protocol
+            <RouterLink class="btn btn-primary max-md:py-3" to="/guides/how-to-keep-heirs-updated">
+              The approach
             </RouterLink>
+            <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/">Back to home</RouterLink>
           </div>
         </div>
       </div>
     </section>
+
+    <div class="container pb-10 md:pb-14">
+      <RouterLink class="muted text-sm inline-flex items-center gap-2 hover:text-anthracite" to="/">
+        ← Back to home
+      </RouterLink>
+    </div>
   </main>
 </template>
 
