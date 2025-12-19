@@ -204,6 +204,28 @@
       </div>
     </section>
 
+    <GoldDivider />
+
+    <section aria-labelledby="commercial-title" class="section">
+      <SectionHeading id="commercial-title" title="Commercial framework" />
+
+      <div class="container mt-6 md:mt-8">
+        <div class="card card-warm card-surface space-y-4 md:p-10">
+          <p class="text-body muted text-wrap">
+            ExecutorBoard is provisioned per estate, for the duration of the estate. The pricing model is designed to
+            reflect operational legal realities, not software usage.
+          </p>
+          <p class="text-body muted text-wrap">
+            Pricing typically falls within the range of a few hundred dollars per estate. The product is currently
+            available in private beta.
+          </p>
+          <p class="text-body muted text-wrap">
+            For early participants, an initial estate may be provisioned at no cost, as part of the beta phase.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <CtaBento
       title="A disciplined reference, offered per estate"
       description="ExecutorBoard is a paid subscription, provisioned per estate. It exists to maintain order in communication and documentation—without providing legal advice or automating legal judgment."
