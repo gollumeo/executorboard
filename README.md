@@ -1,28 +1,30 @@
 # ExecutorBoard
 
-A private, structured “executor board” for keeping estate communication clear, consistent, and calm.
+ExecutorBoard is a private, structured workspace that maintains order and clarity in estate communication. It exists to provide a stable reference when communication is under pressure, without replacing legal counsel or making decisions.
 
-When an estate is in progress, families and professionals need updates—but email threads, scattered documents, and informal messages quickly turn into confusion, delays, and unnecessary conflict. ExecutorBoard is designed to give the executor a single place to share meaningful updates, manage access, and keep everyone aligned.
+## Who it serves
+- Executors responsible for keeping heirs informed.
+- Attorneys and estate professionals who need consistent, controlled communication with clients.
 
-## Who it’s for
-- Executors who want a simple way to keep heirs informed.
-- Attorneys and firms who want clearer, safer client communication.
-- Families who want fewer surprises and a clearer picture of progress.
+## What it provides
+- A single reference point for updates, documents, and decisions.
+- Explicit access control: invite the right people, revoke when needed.
+- A structured record of progress and next steps.
+- Communication that stays deliberate, not reactive.
 
-## What it helps you achieve
-- Reduce back-and-forth by centralizing updates in one place.
-- Keep access intentional: invite the right people, revoke when needed.
-- Maintain a clear timeline of what happened and what’s next.
-- Share progress without oversharing—communication stays structured and purposeful.
+## What it is not
+- Not legal advice or a substitute for counsel.
+- Not an automated decision system.
+- Not a mass messaging tool.
 
-## How it works (high level)
-- Create an estate board.
-- Invite participants (heirs, co-executors, attorneys) to view updates.
-- Post structured updates as the administration progresses.
-- Close the board when the estate is complete.
+## How it is used (high level)
+- Create an estate workspace.
+- Invite participants to view updates.
+- Publish structured updates as administration progresses.
+- Close the workspace when the estate is complete.
 
-## Project status
-ExecutorBoard is under active development. The landing site exists and the backend foundation is in place, but public API endpoints and production hardening are still in progress.
+## Status
+ExecutorBoard is in private beta. The landing site exists and the backend foundation is in progress; public API endpoints and production hardening are not yet complete.
 
 ## For contributors
 Developer-oriented repository and setup notes live in `docs/DEVELOPMENT.md`.
