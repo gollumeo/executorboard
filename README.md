@@ -1,10 +1,10 @@
 # ExecutorBoard
 
-ExecutorBoard is a private, structured workspace that maintains order and clarity in estate communication. It exists to provide a stable reference when communication is under pressure, without replacing legal counsel or making decisions.
+ExecutorBoard is a private, structured estate workspace that maintains order and clarity in estate communication. It is offered per estate. It exists to provide a stable reference when communication is under pressure, without replacing legal counsel or making decisions.
 
 ## Who it serves
-- Executors responsible for keeping heirs informed.
 - Attorneys and estate professionals who need consistent, controlled communication with clients.
+- Executors responsible for keeping heirs informed.
 
 ## What it provides
 - A single reference point for updates, documents, and decisions.
@@ -16,6 +16,7 @@ ExecutorBoard is a private, structured workspace that maintains order and clarit
 - Not legal advice or a substitute for counsel.
 - Not an automated decision system.
 - Not a mass messaging tool.
+- Not a client-facing marketing channel.
 
 ## How it is used (high level)
 - Create an estate workspace.
