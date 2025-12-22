@@ -3,8 +3,8 @@
     <HeroSection />
 
     <section class="section">
-      <div class="container py-8 md:py-12">
-        <p class="heading-lg text-center text-wrap mx-auto max-w-3xl">
+      <div class="container py-4 md:py-6">
+        <p class="heading-lg text-center text-wrap mx-auto max-w-3xl opacity-90">
           Legal work is expensive.<br />
           “Any update?” is noise.
         </p>
