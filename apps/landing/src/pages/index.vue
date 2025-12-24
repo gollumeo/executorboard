@@ -6,8 +6,7 @@
       <div class="container py-4 md:py-6">
         <p class="heading-lg text-center text-wrap mx-auto max-w-3xl opacity-90">
           Legal work is expensive.<br />
-          “Any update?” is noise.
-        </p>
+          “Any update?” is noise.</p>
       </div>
     </section>
 
@@ -22,8 +21,13 @@
       description="A dedicated environment where executors and attorneys maintain clarity, document progress, and keep heirs aligned without repeated outreach."
     >
       <template #actions>
-        <RouterLink class="btn btn-primary max-md:py-3" to="/for-attorneys">For attorneys</RouterLink>
-        <RouterLink class="btn btn-secondary btn-sm max-md:py-3" to="/the-approach">
+        <RouterLink class="btn btn-primary max-md:py-3" to="/for-attorneys"
+          >For attorneys</RouterLink
+        >
+        <RouterLink
+          class="btn btn-secondary btn-sm max-md:py-3"
+          to="/the-approach"
+        >
           The approach
         </RouterLink>
       </template>
