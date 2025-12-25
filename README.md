@@ -28,4 +28,4 @@ ExecutorBoard is a private, structured estate workspace that maintains order and
 ExecutorBoard is in private beta. The landing site exists and the backend foundation is in progress; public API endpoints and production hardening are not yet complete.
 
 ## For contributors
-Developer-oriented repository and setup notes live in `docs/DEVELOPMENT.md`.
+Developer-oriented repository and setup notes live in [here](./docs/DEVELOPMENT.md).
