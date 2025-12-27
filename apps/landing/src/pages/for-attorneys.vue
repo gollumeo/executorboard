@@ -2,7 +2,7 @@
   <main class="bg-ivory">
     <HeroSplit gap-class="gap-8">
       <template #left>
-        <p class="muted uppercase tracking-wide text-sm max-md:pt-0 max-md:pb-1 text-wrap">
+        <p class="muted eyebrow text-wrap">
           For attorneys
         </p>
         <h1 class="heading-xl">A quiet record for estate communication</h1>
@@ -52,7 +52,7 @@
         subtitle="Estate administration is rarely limited to law. It is communication under stress."
       />
 
-      <ul class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2">
+      <ul class="container cards-grid-2-relaxed">
         <li class="card card-warm card-surface space-y-3">
           <h3 class="heading-md">Emotional pressure</h3>
           <p class="text-body muted text-wrap">
@@ -92,7 +92,7 @@
         subtitle="Not more communication—one coherent reference."
       />
 
-      <ul class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+      <ul class="container cards-grid-3-relaxed">
         <li class="card card-warm card-surface space-y-3">
           <h3 class="heading-md">A single account</h3>
           <p class="text-body muted text-wrap">
@@ -107,7 +107,7 @@
           </p>
         </li>
 
-        <li class="card card-warm card-surface space-y-3 sm:col-span-2 sm:max-w-lg sm:mx-auto xl:col-span-1 xl:max-w-full">
+        <li class="card card-warm card-surface card-featured">
           <h3 class="heading-md">A traceable narrative</h3>
           <p class="text-body muted text-wrap">
             The estate progresses in a documented sequence—documents, milestones, and decisions grouped with context.
@@ -125,7 +125,7 @@
         subtitle="A neutral space that supports your work and protects the attorney–client relationship."
       />
 
-      <ol class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+      <ol class="container cards-grid-3-relaxed">
         <li class="card card-warm card-surface space-y-3">
           <span class="step-badge">1</span>
           <h3 class="heading-md">Counsel sets the perimeter</h3>
@@ -142,7 +142,7 @@
           </p>
         </li>
 
-        <li class="card card-warm card-surface space-y-3 sm:col-span-2 sm:max-w-lg sm:mx-auto xl:col-span-1 xl:max-w-full">
+        <li class="card card-warm card-surface card-featured">
           <span class="step-badge">3</span>
           <h3 class="heading-md">Stakeholders consult the reference</h3>
           <p class="text-body muted text-wrap">
@@ -161,7 +161,7 @@
         subtitle="Clear boundaries preserve trust."
       />
 
-      <div class="container mt-6 md:mt-8 grid card-gap grid-cols-1 md:grid-cols-2">
+      <div class="container cards-grid-2-md">
         <div class="card card-warm card-surface space-y-4">
           <h3 class="heading-md">What it is</h3>
           <ul class="space-y-3">
@@ -239,7 +239,7 @@
     </CtaBento>
 
     <div class="container pb-10 md:pb-14">
-      <RouterLink class="muted text-sm inline-flex items-center gap-2 hover:text-anthracite" to="/">
+      <RouterLink class="muted inline-link" to="/">
         ← Back to home
       </RouterLink>
     </div>

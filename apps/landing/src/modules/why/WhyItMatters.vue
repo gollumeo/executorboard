@@ -6,7 +6,7 @@
       subtitle="ExecutorBoard changes the entire dynamic of estate administration."
     />
 
-    <ul class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
+    <ul class="container cards-grid-3-relaxed">
       <li class="card card-warm card-surface space-y-3">
         <h3 class="heading-md">Clarity reduces friction</h3>
         <p class="text-body muted text-wrap">
@@ -22,7 +22,7 @@
         </p>
       </li>
 
-      <li class="card card-warm card-surface space-y-3 md:col-span-2 md:max-w-lg md:mx-auto xl:col-span-1 xl:max-w-full">
+      <li class="card card-warm card-surface card-featured-md">
         <h3 class="heading-md">Transparency supports fairness</h3>
         <p class="text-body muted text-wrap">
           Every heir receives the same information, reinforcing trust and supporting documented, equitable

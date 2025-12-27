@@ -1,6 +1,6 @@
 <template>
   <header :class="wrapperClass">
-    <h2 :id="id" class="heading-lg max-sm:text-3xl max-sm:tracking-normal max-sm:leading-snug sm:tracking-wide">
+    <h2 :id="id" class="heading-lg heading-lg-responsive">
       {{ title }}
     </h2>
     <p v-if="subtitle" class="text-body muted max-md:px-6 text-wrap">

@@ -2,7 +2,7 @@
   <main class="bg-ivory">
     <HeroSplit gap-class="gap-8">
       <template #left>
-        <p class="muted uppercase tracking-wide text-sm max-md:pt-0 max-md:pb-1 text-wrap">
+        <p class="muted eyebrow text-wrap">
           Reference document
         </p>
         <h1 class="heading-xl">The approach</h1>
@@ -43,7 +43,7 @@
         subtitle="Under stress, volume often creates noise."
       />
 
-      <ul class="container mt-6 md:mt-8 grid card-gap grid-cols-1 sm:grid-cols-2">
+      <ul class="container cards-grid-2">
         <li class="card card-warm card-surface space-y-3">
           <p class="text-body muted text-wrap">
             Estates do not break because people cannot send messages. They break when messages multiply without a shared
@@ -92,7 +92,7 @@
         subtitle="One place to consult before anyone escalates."
       />
 
-      <ul class="container mt-6 md:mt-8 grid card-gap grid-cols-1 sm:grid-cols-2">
+      <ul class="container cards-grid-2">
         <li class="card card-warm card-surface space-y-3">
           <p class="text-body muted text-wrap">
             A shared reference does not remove conflict, grief, or impatience. It reduces the need to retell and
@@ -118,7 +118,7 @@
         subtitle="A small set of constraints that keeps the record coherent."
       />
 
-      <ul class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+      <ul class="container cards-grid-3-relaxed">
         <li class="card card-warm card-surface space-y-3">
           <h3 class="heading-md">A consistent update format</h3>
           <p class="text-body muted text-wrap">
@@ -143,7 +143,7 @@
           </p>
         </li>
 
-        <li class="card card-warm card-surface space-y-3 sm:col-span-2 sm:max-w-lg sm:mx-auto xl:col-span-1 xl:max-w-full">
+        <li class="card card-warm card-surface card-featured">
           <h3 class="heading-md">A calm perimeter</h3>
           <p class="text-body muted text-wrap">
             ExecutorBoard separates the record from direct messaging. It does not compete with your existing
@@ -162,7 +162,7 @@
         subtitle="Limits are part of the design."
       />
 
-      <ul class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+      <ul class="container cards-grid-3-relaxed">
         <li class="card card-warm card-surface space-y-3">
           <h3 class="heading-md">No legal advice</h3>
           <p class="text-body muted text-wrap">
@@ -180,7 +180,7 @@
         </li>
 
         <li
-          class="card card-warm card-surface space-y-3 sm:col-span-2 sm:max-w-lg sm:mx-auto xl:col-span-1 xl:max-w-full"
+          class="card card-warm card-surface card-featured"
         >
           <h3 class="heading-md">No pressure to perform</h3>
           <p class="text-body muted text-wrap">
@@ -215,7 +215,7 @@
     </section>
 
     <div class="container pb-10 md:pb-14">
-      <RouterLink class="muted text-sm inline-flex items-center gap-2 hover:text-anthracite" to="/">
+      <RouterLink class="muted inline-link" to="/">
         ← Back to home
       </RouterLink>
     </div>

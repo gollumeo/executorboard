@@ -1,7 +1,7 @@
 <template>
   <HeroSplit>
     <template #left>
-      <p class="muted uppercase tracking-wide text-sm max-md:pt-0 max-md:pb-1 text-wrap">
+      <p class="muted eyebrow text-wrap">
         A private space for estate clarity
       </p>
       <h1 class="heading-xl">A single, orderly board for every step of the estate</h1>
@@ -12,7 +12,7 @@
     </template>
 
     <template #right>
-      <aside class="card-glass shadow-md md:shadow-[0_12px_32px_-4px_rgba(0,0,0,0.22)] space-y-4">
+      <aside class="card-glass card-glass-elevated">
         <h2 class="heading-md">Executor confidence</h2>
         <ul class="space-y-3">
           <li class="flex items-start gap-3">

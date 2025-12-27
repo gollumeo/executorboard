@@ -6,7 +6,7 @@
       subtitle="ExecutorBoard turns chaotic communication into a calm, structured process."
     />
 
-    <ol class="container mt-6 md:mt-8 grid card-gap md:gap-y-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
+    <ol class="container cards-grid-3-relaxed">
       <li class="card card-warm card-surface space-y-3">
         <span class="step-badge">1</span>
         <h3 class="heading-md">Private space restores order</h3>
@@ -23,7 +23,7 @@
         </p>
       </li>
 
-      <li class="card card-warm card-surface space-y-3 md:col-span-2 md:max-w-lg md:mx-auto xl:col-span-1 xl:max-w-full">
+      <li class="card card-warm card-surface card-featured-md">
         <span class="step-badge">3</span>
         <h3 class="heading-md">Shared clarity aligns heirs</h3>
         <p class="text-body muted text-wrap">

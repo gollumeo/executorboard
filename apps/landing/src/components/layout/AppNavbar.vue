@@ -1,8 +1,8 @@
 <template>
-  <nav class="sticky top-0 z-40 w-full border-b border-anthracite/15 bg-[#EFECE3]">
+  <nav class="nav-shell">
     <div class="container flex items-center justify-between py-3 md:py-4">
       <RouterLink
-        class="font-serif text-sm md:text-base tracking-[0.08em] text-anthracite/80 hover:text-anthracite"
+        class="nav-brand"
         to="/"
       >
         ExecutorBoard

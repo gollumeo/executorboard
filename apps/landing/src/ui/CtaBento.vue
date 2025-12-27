@@ -4,7 +4,7 @@
       <div class="cta-bento space-y-6">
         <p class="cta-eyebrow">{{ eyebrow }}</p>
         <h2 class="heading-lg">{{ title }}</h2>
-        <p class="text-body max-sm:text-[15px] max-sm:leading-relaxed text-wrap">
+        <p class="text-body text-body-compact text-wrap">
           {{ description }}
         </p>
         <div class="flex flex-wrap gap-3">
@@ -27,4 +27,3 @@ withDefaults(
   },
 );
 </script>
-
