@@ -1,4 +1,5 @@
 using ExecutorBoard.Application.Estates.Commands;
+using ExecutorBoard.Application.Estates.Errors;
 using ExecutorBoard.Application.Estates.Ports;
 using ExecutorBoard.Domain.Estates.Entities;
 using ExecutorBoard.Domain.Estates.ValueObjects;
@@ -16,7 +17,7 @@ public sealed class CreateEstateFlow(IEstates estates)
 
         if (exists)
         {
-            throw new Exception("Estate name already exists for executor");
+            throw new Exception(EstateErrors.NameAlreadyExistsForExecutor);
         }
 
         var estate = Estate.Create(estateId, executorId, estateName);

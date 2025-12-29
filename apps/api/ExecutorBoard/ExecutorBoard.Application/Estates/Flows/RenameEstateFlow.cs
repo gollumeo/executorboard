@@ -1,4 +1,5 @@
 using ExecutorBoard.Application.Estates.Commands;
+using ExecutorBoard.Application.Estates.Errors;
 using ExecutorBoard.Application.Estates.Ports;
 using ExecutorBoard.Domain.Estates.ValueObjects;
 
@@ -25,7 +26,7 @@ public sealed class RenameEstateFlow(IEstates estates)
 
         if (exists && estate.DisplayName().Value() != newName.Value())
         {
-            throw new Exception("Estate name already exists for executor");
+            throw new Exception(EstateErrors.NameAlreadyExistsForExecutor);
         }
 
         estate.RenameTo(newName);
